@@ -16,4 +16,9 @@ def get_column_names(filename):
 
     return cols
 
-
+def select_columns(x_names, y_name):
+    """
+    :param x_names: list of string names of feature columns
+    :param y_name: string name of target column
+    :return: tuple, X matrix and y vector
+    """
