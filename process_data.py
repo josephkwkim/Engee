@@ -11,10 +11,9 @@ def get_column_names(filename):
     """
     with open(filename) as file:
         reader = csv.reader(file)
-        cols = reader.next()
+        cols = next(reader)
         file.close()
 
-    print(cols)
+    return cols
 
 
-get_column_names("small_train.csv")
