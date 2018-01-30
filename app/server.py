@@ -1,5 +1,10 @@
 from flask import *
 from flask_cors import CORS
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
 from models.button_func import testFunc
 
 app = Flask(__name__)
@@ -7,12 +12,20 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route("/", methods=['POST'])
-def hello_world():
+def process_page():
     rdata = request.get_json()
-    print('Flask Received:', rdata)
+    print('\n', 'Flask Received:', rdata, '\n')
 
-    resp = testFunc()
-    print(jsonify(resp))
+    if rdata['name'] == "Simple Regression from FRONT":
+        # -> From LinReg
+        resp = testFunc()
+    elif rdata['name'] == "Neural Network from FRONT":
+        # -> From NeuNet
+        resp = np.array([0, 1, 2, 3]).tolist()
+    else:
+        resp = "Huh? What is this?"
+
+    print('Sent to JavaScript:', resp, jsonify(resp), '\n')
     return jsonify(resp)
 
 """

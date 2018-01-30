@@ -25,8 +25,16 @@ $(document).ready(function() {
       }).done((response) => { process(response) } );
     } );
 
-    $( "#NeuNet" ).click(function() {
-      alert( "Selected Neural Net!" );
+    $( "#NeuNet" ).click( function( event ) {
+      $.ajax({
+        url: 'http://' + host + ':5000/',
+        type: 'POST',
+        data: JSON.stringify({
+          name: "Neural Network from FRONT",
+          }),
+        contentType: 'application/json',
+        dataType: 'json',
+      }).done((response) => { process(response) } );
     } );
 
     // next listener here
