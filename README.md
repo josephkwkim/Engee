@@ -1,5 +1,7 @@
 # engee
-under construction... remember to make engee-final
+under construction...
+
+remember to make engee-final
 
 **Dependencies:**
 * Bootstrap
@@ -11,4 +13,4 @@ under construction... remember to make engee-final
 
 **Startup:**
 1. run start.bat to activate the flask server on localhost:5000
-2. open button_temp.html to display the web application
+2. open button.html to display the web application
