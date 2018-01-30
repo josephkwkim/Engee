@@ -2,12 +2,12 @@
 under construction...
 
 **Dependencies:**
-..* Bootstrap
-..* Flask
-..* Node.js
-..* NumPy
-..* Pandas
-..* Sci-Kit Learn
+* Bootstrap
+* Flask
+* Node.js
+* NumPy
+* Pandas
+* Sci-Kit Learn
 
 **Startup:**
 1. run start.bat to activate the flask server
