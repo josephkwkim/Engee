@@ -1,34 +1,39 @@
-// global variables
-var host = 'localhost';
+// makes sure application isn't broken
+$(document).ready(function() {
 
-function init(){
-  setupListeners();
-}
+  // global variables
+  var host = 'localhost';
 
-function process(response) {
-  console.log("Received at the FRONT!");
-}
+  function init() {
+    setupListeners();
+  }
 
-function setupListeners() {
-  $( "#LinReg" ).click( function( event ) {
-    $.ajax({
-      url: 'http://' + host + ':5000/',
-      type: 'POST',
-      data: JSON.stringify({
-        name: "Simple Regression from FRONT",
-        }),
-      contentType: 'application/json',
-      dataType: 'json',
-    }).done((response) => { process(response) } );
-  } );
+  function process(response) {
+    console.log(response);
+  }
 
-  $( "#NeuNet" ).click(function() {
-    alert( "Selected Neural Net!" );
-  } );
+  function setupListeners() {
+    $( "#LinReg" ).click( function( event ) {
+      $.ajax({
+        url: 'http://' + host + ':5000/',
+        type: 'POST',
+        data: JSON.stringify({
+          name: "Simple Regression from FRONT",
+          }),
+        contentType: 'application/json',
+        dataType: 'json',
+      }).done((response) => { process(response) } );
+    } );
 
-  // next listener here
+    $( "#NeuNet" ).click(function() {
+      alert( "Selected Neural Net!" );
+    } );
 
-}
+    // next listener here
 
-init();
-console.log("Starting App...");
+  }
+
+  console.log("Starting App...");
+  init();
+
+});

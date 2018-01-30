@@ -18,7 +18,6 @@ def hello_world():
 """
 @app.errorhandler(404)
 def not_found(error):
-    print(error)
     print("LOL, you have been shutdown.")
     # return a view template here
 """
