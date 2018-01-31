@@ -13,24 +13,30 @@ $(document).ready(function() {
   }
 
   function setupListeners() {
-    $( "#LinReg" ).click( function( event ) {
+    $( "#SelectIris" ).click( function( event ) {
+      console.log("FRONT: Clicked on Iris");
       $.ajax({
         url: 'http://' + host + ':5000/',
         type: 'POST',
         data: JSON.stringify({
-          name: "Simple Regression from FRONT",
+          name: "Selected Iris",
+          fname: "iris",
+          file: "../data/iris.csv"
           }),
         contentType: 'application/json',
         dataType: 'json',
       }).done((response) => { process(response) } );
     } );
 
-    $( "#NeuNet" ).click( function( event ) {
+    $( 'input[type=file]' ).change(function () {
+      var fileName = this.files[0].name;
+      console.log("FRONT: Clicked on Select and Chose " + fileName);
       $.ajax({
         url: 'http://' + host + ':5000/',
         type: 'POST',
         data: JSON.stringify({
-          name: "Neural Network from FRONT",
+          name: "Selected Own Data",
+          file: fileName,
           }),
         contentType: 'application/json',
         dataType: 'json',
