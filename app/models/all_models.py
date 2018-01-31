@@ -2,11 +2,13 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression, Lasso
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.neural_network import MLPRegressor
+from sklearn.preprocessing import LabelEncoder
 
 class Dataset(object):
     def __init__(self, x, y):
+        le = LabelEncoder()
         self.x = x
-        self.y = y # numpy ndarray
+        self.y = le.fit_transform(y) # numpy ndarray
     def __str__(self):
         return (pd.concat([x,y], axis=1))
 
