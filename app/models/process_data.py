@@ -7,7 +7,7 @@ def get_column_names(dataset):
     :param dataset: pandas dataframe
     :return: list of column names.  If columns do not have names, raise exception
     """
-    return np.array(dataset.columns)
+    return list(dataset.columns)
 
 def load_dataset(filename):
     '''
@@ -21,7 +21,7 @@ def get_first_rows(dataset):
     :param dataset: pandas dataframe (not separated into x and y yet)
     :return: first 30 rows of the dataframe as a numpy ndarray
     '''
-    return dataset.head(30).values
+    return list(dataset.head(30))
 
 def select_columns(x_names, y_name, dataset):
     """
@@ -31,5 +31,5 @@ def select_columns(x_names, y_name, dataset):
     """
     y = dataset[y_name].values
     x = dataset[x_names].values
-    return x, y
+    return list(x), list(y)
 
