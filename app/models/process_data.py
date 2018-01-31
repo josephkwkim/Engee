@@ -21,7 +21,8 @@ def get_first_rows(dataset):
     :param dataset: pandas dataframe (not separated into x and y yet)
     :return: first 30 rows of the dataframe as a numpy ndarray
     '''
-    return list(dataset.head(30))
+    rows = dataset.head(30).values
+    return [list(i) for i in rows]
 
 def select_columns(x_names, y_name, dataset):
     """

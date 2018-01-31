@@ -9,4 +9,6 @@ def test_regressors():
     (x,y) = select_columns(data.columns[:-2], data.columns[-2], data)
 
     d = Dataset(x,y)
-    return d.neural_network_regressor()
+    #return d.neural_network_regressor()
+
+    print(get_first_rows(data))
