@@ -27,12 +27,15 @@ $(document).ready(function() {
       }
     }*/
 
-    var row = table.insertRow(-1);
+    var label = document.createElement("label");
+    label.innerHTML = "Preview of Dataset:";
+    document.getElementById("PreviewDiv").appendChild(label);
 
+    var row = table.insertRow(-1);
     for (var c = 0; c < num_columns; c++) {
       var button = document.createElement("button");
       button.innerHTML = all_rows[0][c];
-      document.getElementById("TableDiv").appendChild(button);
+      document.getElementById("FeaturesDiv").appendChild(button);
       // Add event handler
       //button.addEventListener ("click", function() {
       //  alert("did something") });
