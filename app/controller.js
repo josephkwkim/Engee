@@ -17,7 +17,7 @@ $(document).ready(function() {
     num_columns = column_names.length;
     first_rows = response.first_rows;
     all_rows = first_rows;
-    num_rows = all_rows.length;
+    num_rows = 11;
     all_rows.unshift(column_names);
 
     table = document.getElementById("OverviewTable");
