@@ -17,7 +17,7 @@ $(document).ready(function() {
     num_columns = column_names.length;
     first_rows = response.first_rows;
     all_rows = first_rows;
-    num_rows = 11;
+    num_rows = 6;
     all_rows.unshift(column_names);
 
     table = document.getElementById("OverviewTable");
@@ -28,6 +28,16 @@ $(document).ready(function() {
     }*/
 
     var row = table.insertRow(-1);
+
+    for (var c = 0; c < num_columns; c++) {
+      var button = document.createElement("button");
+      button.innerHTML = all_rows[0][c];
+      document.getElementById("TableDiv").appendChild(button);
+      // Add event handler
+      //button.addEventListener ("click", function() {
+      //  alert("did something") });
+    }
+
     for (var c = 0; c < num_columns; c++) {
         var header = document.createElement("TH");
         header.innerHTML = all_rows[0][c];
