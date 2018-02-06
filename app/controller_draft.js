@@ -55,7 +55,6 @@ $(document).ready(function() {
     }
 
     var chooseButton = document.createElement("button");
-    chooseButton.className = 'btn btn-primary btn-x1';
     chooseButton.innerHTML = "Choose Features";
     document.getElementById("FeaturesDiv").appendChild(chooseButton);
   }
