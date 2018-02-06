@@ -25,7 +25,8 @@ def process_page():
             df = load_dataset(filename)
         elif rdata['name'] == "Selected Own Data":  # -> User Dataset
             filename = rdata['file']
-            df = load_dataset(filename)
+            default_path = "../data/"
+            df = load_dataset(default_path + filename)
         else:
             resp = "1Huh? What is this?"
 

@@ -14,16 +14,34 @@ $(document).ready(function() {
 
   function displayData(response) {
     column_names = response.column_names;
+    num_columns = column_names.length;
     first_rows = response.first_rows;
     all_rows = first_rows;
+    num_rows = all_rows.length;
     all_rows.unshift(column_names);
 
     table = document.getElementById("OverviewTable");
-    for (var r = 0; r < table.rows.length; r++) {
+    /*for (var r = 0; r < table.rows.length; r++) {
       for (var c = 0; c < table.rows[r].cells.length; c++) {
         table.rows[r].cells[c].innerHTML = all_rows[r][c];
       }
+    }*/
+
+    var row = table.insertRow(-1);
+    for (var c = 0; c < num_columns; c++) {
+        var header = document.createElement("TH");
+        header.innerHTML = all_rows[0][c];
+        row.appendChild(header);
     }
+
+    for (var r = 1; r < num_rows; r++) {
+        row = table.insertRow(-1);
+        for (var c = 0; c < num_columns; c++) {
+            var cell = row.insertCell(-1);
+            cell.innerHTML = all_rows[r][c];
+        }
+    }
+
   }
 
   function setupListeners() {
