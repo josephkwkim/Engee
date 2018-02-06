@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../controller.js"></script>
 
     <title>engee</title>
 
@@ -48,7 +50,7 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#dataset">Choose Dataset</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#model">Select Model</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#model">Select Features</a>
             </li>
 
           </ul>
@@ -156,10 +158,9 @@
           <div class="text-center mt-4 col-lg-4"></div>
 
           <div class="text-center mt-4 col-lg-4">
-              <form id="uploadbanner" enctype="multipart/form-data" method="post" href="#model">
+              <!--form id="uploadbanner" enctype="multipart/form-data" method="post" href="#model"-->
                   <label for="file" class="btn btn-xl btn-outline-light">Select .CSV File</label>
-                  <input id="file" style="visibility:hidden;" type="file" accept=".csv">
-                  <input id="submit" style="visibility:hidden;" type="submit">
+                  <input id="file" name="file" style="visibility:hidden;" type="file" accept=".csv" multiple>
               </form>
           </div>
 
@@ -170,40 +171,22 @@
     <!-- Contact Section -->
     <section id="model">
       <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Select Your Model</h2>
+        <h2 class="text-center text-uppercase text-secondary mb-0">Select Your Features</h2>
         <hr class="star-dark mb-5">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
+          <div id="PreviewDiv"></div>
+          <div class="col-lg-10 mx-auto">
+            <div style="overflow-x: auto;
+                        overflow-y: hidden;
+                        white-space: nowrap;">
+              <table id="OverviewTable" class="table">
+              </table>
+            </div>
+            <div id="FeaturesDiv">
+            </div>
+            <a class="btn btn-primary btn-xl">
+                 Choose Features
+             </a>
           </div>
         </div>
       </div>
