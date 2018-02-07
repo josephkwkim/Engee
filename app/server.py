@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 from models.button_func import testFunc
 from models.process_data import load_dataset, get_column_names, get_first_rows
+from models.all_models import *
 
 app = Flask(__name__)
 
@@ -15,6 +16,7 @@ CORS(app)
 glob_df = None
 glob_X = None
 glob_y = None
+glob_models = None
 glob_model = None
 
 @app.route("/", methods=['POST'])
@@ -22,6 +24,7 @@ def process_page():
     global glob_df
     global glob_X
     global glob_y
+    global glob_models
     global glob_model
 
     rdata = request.get_json()
@@ -49,9 +52,11 @@ def process_page():
     elif rdata['phase'] == 2:
         if rdata['name'] == "Chose Features":  # -> Features
             X_names = rdata['features']
+            glob_X = X_names
             resp = "Received Features at BACK."
         elif rdata['name'] == "Chose Target":  # -> Target
             y_name = rdata['target'][0]
+            glob_y = y_name
             resp = "Received Target at BACK."
         else:
             resp = "Phase 2 Huh? What is this?"
@@ -59,9 +64,10 @@ def process_page():
     ### Selecting Prediction Model ###
     elif rdata['phase'] == 3:
         if rdata['name'] == "Chose Regress":  # -> Regression Prediction
-            type = "regression"
+            resp, glob_models = get_models(glob_X, glob_y, regression=True)
         elif rdata['name'] == "Chose Classify":  # -> Classification Prediction
             type = "classification"
+            resp, glob_models = get_models(glob_X, glob_y, regression=False)
         else:
             resp = "Phase 3 Huh? What is this?"
 

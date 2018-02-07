@@ -136,12 +136,12 @@ $(document).ready(function() {
     }
   }
 
-  function processModelList(response) {
-    if (response[0] == "Regression") {
-      // do regression things
+  function processModelList(response, regress) {
+    if (regress) {
+      console.log(response);
     }
     else {
-      // do classification things
+      console.log(response);
     }
   }
 
@@ -234,7 +234,7 @@ $(document).ready(function() {
             }),
           contentType: 'application/json',
           dataType: 'json',
-        }).done((response) => { processModelList(response) } );
+        }).done((response) => { processModelList(response, true) } );
       } );
     }
 
@@ -251,7 +251,7 @@ $(document).ready(function() {
             }),
           contentType: 'application/json',
           dataType: 'json',
-        }).done((response) => { processModelList(response) } );
+        }).done((response) => { processModelList(response, false) } );
       } );
     }
 
