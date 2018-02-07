@@ -24,13 +24,18 @@ def get_first_rows(dataset):
     rows = dataset.head(30).values
     return [list(i) for i in rows]
 
-def select_columns(x_names, y_name, dataset):
+def select_columns_X(x_names, dataset):
     """
     :param x_names: list of string names of feature columns
+    :return: list, X matrix
+    """
+    x = dataset[x_names].values
+    return list(x)
+
+def select_column_y(y_name, dataset):
+    """
     :param y_name: string name of target column
-    :return: tuple, X matrix and y vector
+    :return: list, y vector
     """
     y = dataset[y_name].values
-    x = dataset[x_names].values
-    return list(x), list(y)
-
+    return list(y)

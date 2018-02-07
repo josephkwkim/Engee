@@ -6,14 +6,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from models.button_func import testFunc
-from models.process_data import load_dataset, get_column_names, get_first_rows
+from models.process_data import load_dataset, get_column_names, get_first_rows, select_columns_X, select_column_y
 
 app = Flask(__name__)
 
 CORS(app)
 
+glob_df = None
+glob_X = None
+glob_y = None
+glob_model = None
+
 @app.route("/", methods=['POST'])
 def process_page():
+    global glob_df
+    global glob_X
+    global glob_y
+    global glob_model
 
     rdata = request.get_json()
     print('\n', 'Flask Received:', rdata, '\n')
@@ -30,6 +39,7 @@ def process_page():
         else:
             resp = "1Huh? What is this?"
 
+        glob_df = df
         column_names = get_column_names(df)
         first_rows = get_first_rows(df)
 
@@ -37,13 +47,20 @@ def process_page():
 
     ### Confirming Features and Target ###
     elif rdata['phase'] == 2:
-        if rdata['name'] == "Confirmed Features and Target":  # -> Features and Target
-            X_text = rdata['features']
-            X_names = X_text.split(",")
-            y_name = rdata['target']
-            resp = "Features: " + X_text + "\nTarget: " + y_name
+        if rdata['name'] == "Chose Features":  # -> Features
+            X_names = rdata['features']
+            glob_x = select_columns_X(X_names, glob_df)
+            resp = "Received Features at BACK."
+        elif rdata['name'] == "Chose Target":  # -> Target
+            y_name = rdata['target'][0]
+            glob_y = select_column_y(y_name, glob_df)
+            resp = "Received Target at BACK."
         else:
             resp = "2Huh? What is this?"
+
+    ### Selecting Prediction Model ###
+    elif rdata['phase'] == 3:
+        return 42
 
     print('Sent to JavaScript:', resp, jsonify(resp), '\n')
     return jsonify(resp)
