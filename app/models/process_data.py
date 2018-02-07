@@ -24,18 +24,15 @@ def get_first_rows(dataset):
     rows = dataset.head(30).values
     return [list(i) for i in rows]
 
-def select_columns_X(x_names, dataset):
-    """
-    :param x_names: list of string names of feature columns
-    :return: list, X matrix
-    """
-    x = dataset[x_names].values
-    return list(x)
-
-def select_column_y(y_name, dataset):
-    """
-    :param y_name: string name of target column
-    :return: list, y vector
-    """
-    y = dataset[y_name].values
-    return list(y)
+def get_relevant_dataset(x, y, dataset):
+    '''
+    :param x: list of strings of x-columns
+    :param y: string with name of y-column
+    :param dataset: pandas dataframe
+    :return: x ndarray and y ndarray
+    '''
+    assert(isinstance(x, list))
+    assert(isinstance(y, str))
+    df_x = dataset[x]
+    df_y = dataset[y]
+    return df_x.values, df_y.values

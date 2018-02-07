@@ -37,7 +37,7 @@ def process_page():
             default_path = "../data/"
             df = load_dataset(default_path + filename)
         else:
-            resp = "1Huh? What is this?"
+            resp = "Phase 1 Huh? What is this?"
 
         glob_df = df
         column_names = get_column_names(df)
@@ -49,18 +49,21 @@ def process_page():
     elif rdata['phase'] == 2:
         if rdata['name'] == "Chose Features":  # -> Features
             X_names = rdata['features']
-            glob_x = select_columns_X(X_names, glob_df)
             resp = "Received Features at BACK."
         elif rdata['name'] == "Chose Target":  # -> Target
             y_name = rdata['target'][0]
-            glob_y = select_column_y(y_name, glob_df)
             resp = "Received Target at BACK."
         else:
-            resp = "2Huh? What is this?"
+            resp = "Phase 2 Huh? What is this?"
 
     ### Selecting Prediction Model ###
     elif rdata['phase'] == 3:
-        return 42
+        if rdata['name'] == "Chose Regress":  # -> Regression Prediction
+            type = "regression"
+        elif rdata['name'] == "Chose Classify":  # -> Classification Prediction
+            type = "classification"
+        else:
+            resp = "Phase 3 Huh? What is this?"
 
     print('Sent to JavaScript:', resp, jsonify(resp), '\n')
     return jsonify(resp)
