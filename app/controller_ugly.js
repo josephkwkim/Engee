@@ -99,6 +99,25 @@ $(document).ready(function() {
     setupListeners(listener="chooseButtonY");
   }
 
+  // for generating interface after selecting target
+  function processTarget(response) {
+    // create regression button
+    var regressButton = document.createElement("button");
+    regressButton.id = "regressButton";
+    regressButton.className = 'btn btn-primary btn-x1';
+    regressButton.innerHTML = "Regression";
+    document.getElementById("ModelTypeDiv").appendChild(regressButton);
+    setupListeners(listener="regressButton");
+
+    // create classification button
+    var classifyButton = document.createElement("button");
+    classifyButton.id = "classifyButton";
+    classifyButton.className = 'btn btn-primary btn-x1';
+    classifyButton.innerHTML = "Classification";
+    document.getElementById("ModelTypeDiv").appendChild(classifyButton);
+    setupListeners(listener="classifyButton");
+  }
+
   // wrapper for feature selection setupListeners
   function listenFeature(id) {
     var featureChoice = document.getElementById(id);
@@ -190,6 +209,40 @@ $(document).ready(function() {
           contentType: 'application/json',
           dataType: 'json',
         }).done((response) => { processTarget(response) } );
+      } );
+    }
+
+    // condition for selecting features
+    if (listener == "regressButton") {
+      $( "#regressButton" ).click( function( event ) {
+        console.log("Chose Regression Models!");
+        $.ajax({
+          url: 'http://' + host + ':5000/',
+          type: 'POST',
+          data: JSON.stringify({
+            name: "Chose Regress",
+            phase: 3
+            }),
+          contentType: 'application/json',
+          dataType: 'json',
+        }).done((response) => { processModelList(response) } );
+      } );
+    }
+
+    // condition for selecting features
+    if (listener == "classifyButton") {
+      $( "#classifyButton" ).click( function( event ) {
+        console.log("Chose CLassification Models!");
+        $.ajax({
+          url: 'http://' + host + ':5000/',
+          type: 'POST',
+          data: JSON.stringify({
+            name: "Chose Classify",
+            phase: 3
+            }),
+          contentType: 'application/json',
+          dataType: 'json',
+        }).done((response) => { processModelList(response) } );
       } );
     }
 
