@@ -28,13 +28,16 @@ $(document).ready(function() {
 
   // for generating interface after selecting dataset
   function displayData(response) {
-  
+
     column_names = response.column_names;
     num_columns = column_names.length;
     first_rows = response.first_rows;
     all_rows = first_rows;
     num_rows = 6;
     all_rows.unshift(column_names);
+
+    // Unhide the Go to Model Button
+    document.getElementById("ToModelsButton").style.display = "block";
 
     // Unhide the Model Nav Bar button
     document.getElementById("ModelNavBar").style.display = "block";
