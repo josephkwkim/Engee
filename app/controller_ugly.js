@@ -5,6 +5,7 @@ $(document).ready(function() {
   var host = 'localhost';
   var sel_features = [];
   var sel_target = []; // only one item
+  var sel_model = []; // only one item
 
   function init() {
     setupListeners();
@@ -20,10 +21,27 @@ $(document).ready(function() {
     console.log("Selected " + response + " as Feature!");
   }
 
-  // assign sel_target to response
+  // add response to sel_target
   function selectTarget(response) {
     sel_target.push(response);
     console.log("Selected " + response + " as Target!");
+  }
+
+  // add response to sel_model
+  function selectModel(response) {
+    sel_model.push(response);
+    console.log("Selected " + response + " as Model!");
+      $.ajax({
+        url: 'http://' + host + ':5000/',
+        type: 'POST',
+        data: JSON.stringify({
+          name: "Chose Model",
+          phase: 4,
+          model: response
+          }),
+        contentType: 'application/json',
+        dataType: 'json',
+      }).done((response) => { displayLoading(response) } );
   }
 
   // for generating interface after selecting dataset
@@ -136,13 +154,29 @@ $(document).ready(function() {
     }
   }
 
-  function processModelList(response, regress) {
-    if (regress) {
-      console.log(response);
+  function processModelList(response) {
+    // create model choices
+    for (var m = 0; m < response.length; m++) {
+      var button = document.createElement("button");
+      button.id = "model" + m;
+      button.innerHTML = response[m];
+      document.getElementById("ModelSelectDiv").appendChild(button);
+      listenModel("model" + m);
     }
-    else {
-      console.log(response);
+  }
+
+  // wrapper for model selection setupListeners
+  function listenModel(id) {
+    var modelChoice = document.getElementById(id);
+    if (typeof window.addEventListener==='function') {
+      modelChoice.addEventListener ("click", function() {
+        selectModel(modelChoice.innerHTML) });
     }
+  }
+
+  // loading screen while model trains
+  function displayLoading() {
+    console.log("Loading...");
   }
 
   function setupListeners(listener="") {
@@ -234,7 +268,7 @@ $(document).ready(function() {
             }),
           contentType: 'application/json',
           dataType: 'json',
-        }).done((response) => { processModelList(response, true) } );
+        }).done((response) => { processModelList(response) } );
       } );
     }
 
@@ -251,7 +285,7 @@ $(document).ready(function() {
             }),
           contentType: 'application/json',
           dataType: 'json',
-        }).done((response) => { processModelList(response, false) } );
+        }).done((response) => { processModelList(response) } );
       } );
     }
 
