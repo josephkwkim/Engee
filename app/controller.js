@@ -35,18 +35,26 @@ $(document).ready(function() {
     num_rows = 6;
     all_rows.unshift(column_names);
 
+    // Unhide the Model Nav Bar button
+    document.getElementById("ModelNavBar").style.display = "block";
+
+    // Unhide the Model Section
+    document.getElementById("ModelSection").style.display = "block";
+
     table = document.getElementById("OverviewTable");
 
     // insert preview label
-    var label = document.createElement("label");
-    label.innerHTML = "Preview of Dataset:";
-    document.getElementById("PreviewDiv").appendChild(label);
+    //var label = document.createElement("label");
+    //label.innerHTML = "Preview of Dataset:";
+    //document.getElementById("PreviewDiv").appendChild(label);
 
     // insert header row
     var row = table.insertRow(-1);
     for (var c = 0; c < num_columns; c++) {
         var header = document.createElement("TH");
         header.innerHTML = all_rows[0][c];
+        header.style.color = "white";
+        header.style.background = "#503A60";
         row.appendChild(header);
     }
 
