@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from models.button_func import testFunc
-from models.process_data import load_dataset, get_column_names, get_first_rows, select_columns_X, select_column_y
+from models.process_data import load_dataset, get_column_names, get_first_rows
 
 app = Flask(__name__)
 
