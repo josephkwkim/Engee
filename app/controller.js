@@ -5,6 +5,7 @@ $(document).ready(function() {
   var host = 'localhost';
   var sel_features = [];
   var sel_target = []; // only one item
+  var sel_model = []; // only one item
 
   function init() {
     setupListeners();
@@ -26,9 +27,25 @@ $(document).ready(function() {
     console.log("Selected " + response + " as Target!");
   }
 
+  // add response to sel_model
+  function selectModel(response) {
+    sel_model.push(response);
+    console.log("Selected " + response + " as Model!");
+      $.ajax({
+        url: 'http://' + host + ':5000/',
+        type: 'POST',
+        data: JSON.stringify({
+          name: "Chose Model",
+          phase: 4,
+          model: response
+          }),
+        contentType: 'application/json',
+        dataType: 'json',
+      }).done((response) => { displayLoading(response) } );
+  }
+
   // for generating interface after selecting dataset
   function displayData(response) {
-
     column_names = response.column_names;
     num_columns = column_names.length;
     first_rows = response.first_rows;
@@ -46,12 +63,6 @@ $(document).ready(function() {
     document.getElementById("ModelSection").style.display = "block";
 
     table = document.getElementById("OverviewTable");
-
-
-    // insert preview label
-    //var label = document.createElement("label");
-    //label.innerHTML = "Preview of Dataset:";
-    //document.getElementById("PreviewDiv").appendChild(label);
 
     // insert header row
     var row = table.insertRow(-1);
@@ -123,6 +134,25 @@ $(document).ready(function() {
     setupListeners(listener="chooseButtonY");
   }
 
+  // for generating interface after selecting target
+  function processTarget(response) {
+    // create regression button
+    var regressButton = document.createElement("button");
+    regressButton.id = "regressButton";
+    regressButton.className = 'btn btn-primary btn-x1';
+    regressButton.innerHTML = "Regression";
+    document.getElementById("ModelTypeDiv").appendChild(regressButton);
+    setupListeners(listener="regressButton");
+
+    // create classification button
+    var classifyButton = document.createElement("button");
+    classifyButton.id = "classifyButton";
+    classifyButton.className = 'btn btn-primary btn-x1';
+    classifyButton.innerHTML = "Classification";
+    document.getElementById("ModelTypeDiv").appendChild(classifyButton);
+    setupListeners(listener="classifyButton");
+  }
+
   // wrapper for feature selection setupListeners
   function listenFeature(id) {
     var featureChoice = document.getElementById(id);
@@ -139,6 +169,31 @@ $(document).ready(function() {
       targetChoice.addEventListener ("click", function() {
         selectTarget(targetChoice.innerHTML) });
     }
+  }
+
+  function processModelList(response) {
+    // create model choices
+    for (var m = 0; m < response.length; m++) {
+      var button = document.createElement("button");
+      button.id = "model" + m;
+      button.innerHTML = response[m];
+      document.getElementById("ModelSelectDiv").appendChild(button);
+      listenModel("model" + m);
+    }
+  }
+
+  // wrapper for model selection setupListeners
+  function listenModel(id) {
+    var modelChoice = document.getElementById(id);
+    if (typeof window.addEventListener==='function') {
+      modelChoice.addEventListener ("click", function() {
+        selectModel(modelChoice.innerHTML) });
+    }
+  }
+
+  // loading screen while model trains
+  function displayLoading() {
+    console.log("Loading...");
   }
 
   function setupListeners(listener="") {
@@ -214,6 +269,40 @@ $(document).ready(function() {
           contentType: 'application/json',
           dataType: 'json',
         }).done((response) => { processTarget(response) } );
+      } );
+    }
+
+    // condition for selecting regression models
+    if (listener == "regressButton") {
+      $( "#regressButton" ).click( function( event ) {
+        console.log("Chose Regression Models!");
+        $.ajax({
+          url: 'http://' + host + ':5000/',
+          type: 'POST',
+          data: JSON.stringify({
+            name: "Chose Regress",
+            phase: 3
+            }),
+          contentType: 'application/json',
+          dataType: 'json',
+        }).done((response) => { processModelList(response) } );
+      } );
+    }
+
+    // condition for selecting classification models
+    if (listener == "classifyButton") {
+      $( "#classifyButton" ).click( function( event ) {
+        console.log("Chose CLassification Models!");
+        $.ajax({
+          url: 'http://' + host + ':5000/',
+          type: 'POST',
+          data: JSON.stringify({
+            name: "Chose Classify",
+            phase: 3
+            }),
+          contentType: 'application/json',
+          dataType: 'json',
+        }).done((response) => { processModelList(response) } );
       } );
     }
 
