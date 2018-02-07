@@ -61,7 +61,7 @@ def process_page():
         else:
             resp = "Phase 2 Huh? What is this?"
 
-    ### Selecting Prediction Model ###
+    ### Selecting Prediction Type ###
     elif rdata['phase'] == 3:
         if rdata['name'] == "Chose Regress":  # -> Regression Prediction
             resp, glob_models = get_models(glob_X, glob_y, regression=True)
@@ -70,6 +70,14 @@ def process_page():
             resp, glob_models = get_models(glob_X, glob_y, regression=False)
         else:
             resp = "Phase 3 Huh? What is this?"
+
+    ### Selecting Prediction Model ###
+    elif rdata['phase'] == 4:
+        if rdata['name'] == "Chose Model":  # -> Model Selected
+            glob_model = rdata['model']
+            resp = "Model Received at BACK!"
+        else:
+            resp = "Phase 4 Huh? What is this?"
 
     print('Sent to JavaScript:', resp, jsonify(resp), '\n')
     return jsonify(resp)
