@@ -59,18 +59,18 @@
     <!-- Header -->
     <header class="masthead bg-primary text-white text-center">
       <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="../images/logo_sm.png" alt="">
+        <img class="img-fluid  d-block mx-auto" src="../images/logo_sm.png" alt="">
         <h1 class="mb-0">engee</h1>
         <hr class="star-light">
         <h2 class="font-weight-light mb-0">LMAOEIEIEIE</h2>
       </div>
     </header>
 
-    <!-- Portfolio Grid Section -->
+    <!-- Introduction Section -->
     <section class="portfolio" id="intro">
       <div class="container">
         <h2 class="text-center text-uppercase text-secondary mb-0">Introduction</h2>
-        <hr class="star-light mb-5">
+        <hr class="star-dark mb-5">
           <div class="row">
             <div class="col-lg-4 ml-auto">
               <p class="lead"> engee is the premier cutting-edge web application designed to provide hands-on experience working with datasets with an easy-to-use interface and real-time feedback for several prepackaged datasets. </p>
@@ -87,11 +87,11 @@
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Dataset Section -->
     <section class="bg-primary text-white mb-0" id="dataset">
       <div class="container">
         <h2 class="text-center text-uppercase text-white">Choose Your Dataset</h2>
-        <hr class="star-dark mb-5">
+        <hr class="star-light">
         <div class="row">
           <div class="col-md-6 col-lg-4">
             <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
@@ -146,18 +146,32 @@
           <div class="col-lg-10 mx-auto">
             <div style="overflow-x: auto;
                         overflow-y: hidden;
-                        white-space: nowrap;">
+                        white-space: nowrap;
+                        margin-bottom: 30px;">
               <table id="OverviewTable" class="table">
               </table>
             </div>
 
-            <h2 class="text-center text-uppercase text-secondary mb-0">Data Preview</h2>
+            <h2 class="text-center text-uppercase text-secondary mb-0">Feature Selection</h2>
             <hr class="star-dark mb-5">
 
-            <div id="FeaturesDiv">
+            <center><div id="FeaturesDiv" class="text-center mt-4 col-lg-8">
+            </div></center>
+
+            <div id="ChooseButtonXDiv" class="text-center mt-4 col-lg-12">
             </div>
-            <div id="TargetDiv">
+
+            <h2 id="TargetTitle" class="text-center text-uppercase text-secondary mb-0"
+                style="display:none">
+                Target Selection</h2>
+            <hr id="TargetTitleStar" class="star-dark mb-5" style="display:none">
+
+            <center><div id="TargetDiv" class="text-center mt-4 col-lg-8">
+            </div></center>
+
+            <div id="ChooseButtonYDiv" class="text-center mt-4 col-lg-12">
             </div>
+
           </div>
         </div>
       </div>

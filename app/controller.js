@@ -28,6 +28,7 @@ $(document).ready(function() {
 
   // for generating interface after selecting dataset
   function displayData(response) {
+  
     column_names = response.column_names;
     num_columns = column_names.length;
     first_rows = response.first_rows;
@@ -42,6 +43,7 @@ $(document).ready(function() {
     document.getElementById("ModelSection").style.display = "block";
 
     table = document.getElementById("OverviewTable");
+
 
     // insert preview label
     //var label = document.createElement("label");
@@ -70,8 +72,10 @@ $(document).ready(function() {
     // create feature choices
     for (var c = 0; c < num_columns; c++) {
       var button = document.createElement("button");
+      button.className = 'btn';
       button.id = "attributeF" + c;
       button.innerHTML = all_rows[0][c];
+      button.style.margin = "5px";
       document.getElementById("FeaturesDiv").appendChild(button);
       listenFeature("attributeF" + c);
     }
@@ -81,18 +85,27 @@ $(document).ready(function() {
     chooseButtonX.id = "chooseButtonX";
     chooseButtonX.className = 'btn btn-primary btn-x1';
     chooseButtonX.innerHTML = "Choose Features";
-    document.getElementById("FeaturesDiv").appendChild(chooseButtonX);
+    document.getElementById("ChooseButtonXDiv").appendChild(chooseButtonX);
     setupListeners(listener="chooseButtonX");
   }
 
   // for generating interface after selecting features
   function processFeatures(response) {
+    // DISPLAY CHOSEN BUTTONS
+
+    // display Target title
+    document.getElementById("TargetTitle").style.display = "block";
+    document.getElementById("TargetTitle").style.marginTop = "30px";
+    document.getElementById("TargetTitleStar").style.display = "block";
+
     // create target choices
     for (var c = 0; c < num_columns; c++) {
       if (sel_features.indexOf(all_rows[0][c]) == -1) {
         var button = document.createElement("button");
+        button.className = 'btn';
         button.id = "attributeT" + c;
         button.innerHTML = all_rows[0][c];
+        button.style.margin = "5px";
         document.getElementById("TargetDiv").appendChild(button);
         listenTarget("attributeT" + c);
       }
@@ -103,7 +116,7 @@ $(document).ready(function() {
     chooseButtonY.id = "chooseButtonY";
     chooseButtonY.className = 'btn btn-primary btn-x1';
     chooseButtonY.innerHTML = "Choose Target";
-    document.getElementById("TargetDiv").appendChild(chooseButtonY);
+    document.getElementById("ChooseButtonYDiv").appendChild(chooseButtonY);
     setupListeners(listener="chooseButtonY");
   }
 
