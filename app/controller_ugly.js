@@ -136,6 +136,15 @@ $(document).ready(function() {
     }
   }
 
+  function processModelList(response) {
+    if (response[0] == "Regression") {
+      // do regression things
+    }
+    else {
+      // do classification things
+    }
+  }
+
   function setupListeners(listener="") {
     // condition for init
     if (listener == "") {
@@ -212,7 +221,7 @@ $(document).ready(function() {
       } );
     }
 
-    // condition for selecting features
+    // condition for selecting regression models
     if (listener == "regressButton") {
       $( "#regressButton" ).click( function( event ) {
         console.log("Chose Regression Models!");
@@ -229,7 +238,7 @@ $(document).ready(function() {
       } );
     }
 
-    // condition for selecting features
+    // condition for selecting classification models
     if (listener == "classifyButton") {
       $( "#classifyButton" ).click( function( event ) {
         console.log("Chose CLassification Models!");
