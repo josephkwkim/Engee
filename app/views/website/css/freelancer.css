@@ -336,7 +336,7 @@ a {
 }
 
 a:focus, a:hover, a:active {
-  color: #128f76;
+  color: #9198C4;
 }
 
 .btn {
@@ -365,8 +365,8 @@ a:focus, a:hover, a:active {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #128f76;
-  border-color: #128f76;
+  background-color: #9198C4;
+  border-color: #9198C4;
 }
 
 .btn-secondary {
@@ -377,4 +377,14 @@ a:focus, a:hover, a:active {
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
   background-color: #1a252f;
   border-color: #1a252f;
+}
+
+.btn-var-unclicked {
+  background-color: #F4DEC7;
+  color: black;
+}
+
+.btn-var-clicked {
+  background-color: #AB6B3A;
+  color: white
 }

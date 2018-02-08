@@ -86,7 +86,7 @@ $(document).ready(function() {
     // create feature choices
     for (var c = 0; c < num_columns; c++) {
       var button = document.createElement("button");
-      button.className = 'btn';
+      button.className = 'btn btn-var-unclicked';
       button.id = "attributeF" + c;
       button.innerHTML = all_rows[0][c];
       button.style.margin = "5px";
@@ -116,7 +116,7 @@ $(document).ready(function() {
     for (var c = 0; c < num_columns; c++) {
       if (sel_features.indexOf(all_rows[0][c]) == -1) {
         var button = document.createElement("button");
-        button.className = 'btn';
+        button.className = 'btn btn-var-unclicked';
         button.id = "attributeT" + c;
         button.innerHTML = all_rows[0][c];
         button.style.margin = "5px";
@@ -165,10 +165,12 @@ $(document).ready(function() {
   // wrapper for feature selection setupListeners
   function listenFeature(id) {
     var featureChoice = document.getElementById(id);
-    if (typeof window.addEventListener==='function') {
-      featureChoice.addEventListener ("click", function() {
-        selectFeature(featureChoice.innerHTML) });
-    }
+    //if (featureChoice.instanceof("btn-var-unclicked") {
+      if (typeof window.addEventListener==='function') {
+        featureChoice.addEventListener ("click", function() {
+          selectFeature(featureChoice.innerHTML) });
+      }
+    //}
   }
 
   // wrapper for target selection setupListeners
@@ -186,7 +188,7 @@ $(document).ready(function() {
       var button = document.createElement("button");
       button.id = "model" + m;
       button.innerHTML = response[m];
-      button.className = 'btn';
+      button.className = 'btn btn-var-unclicked';
       button.style.margin = "5px";
       document.getElementById("ModelSelectDiv").appendChild(button);
       listenModel("model" + m);
