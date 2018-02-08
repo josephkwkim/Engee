@@ -53,9 +53,6 @@ $(document).ready(function() {
     num_rows = 6;
     all_rows.unshift(column_names);
 
-    // Unhide the Go to Model Button
-    document.getElementById("ToModelsButton").style.display = "block";
-
     // Unhide the Model Nav Bar button
     document.getElementById("ModelNavBar").style.display = "block";
 
@@ -83,6 +80,9 @@ $(document).ready(function() {
         }
     }
 
+    // Unhide the Features Section
+    document.getElementById("FeaturesSection").style.display = "block";
+
     // create feature choices
     for (var c = 0; c < num_columns; c++) {
       var button = document.createElement("button");
@@ -97,10 +97,12 @@ $(document).ready(function() {
     // create choose features button
     var chooseButtonX = document.createElement("button");
     chooseButtonX.id = "chooseButtonX";
-    chooseButtonX.className = 'btn btn-primary btn-x1';
+    chooseButtonX.className = 'btn btn-outline-light btn-xl';
     chooseButtonX.innerHTML = "Choose Features";
     document.getElementById("ChooseButtonXDiv").appendChild(chooseButtonX);
     setupListeners(listener="chooseButtonX");
+
+    $('html, body').animate({scrollTop: $('#model').offset().top}, 'slow');
   }
 
   // for generating interface after selecting features
@@ -108,9 +110,7 @@ $(document).ready(function() {
     // DISPLAY CHOSEN BUTTONS
 
     // display Target title
-    document.getElementById("TargetTitle").style.display = "block";
-    document.getElementById("TargetTitle").style.marginTop = "30px";
-    document.getElementById("TargetTitleStar").style.display = "block";
+    document.getElementById("TargetSection").style.display = "block";
 
     // create target choices
     for (var c = 0; c < num_columns; c++) {
@@ -128,29 +128,38 @@ $(document).ready(function() {
     // create choose target button
     var chooseButtonY = document.createElement("button");
     chooseButtonY.id = "chooseButtonY";
-    chooseButtonY.className = 'btn btn-primary btn-x1';
+    chooseButtonY.className = 'btn btn-primary btn-xl';
     chooseButtonY.innerHTML = "Choose Target";
     document.getElementById("ChooseButtonYDiv").appendChild(chooseButtonY);
     setupListeners(listener="chooseButtonY");
+
+    $('html, body').animate({scrollTop: $('#TargetSection').offset().top}, 'slow');
   }
 
   // for generating interface after selecting target
   function processTarget(response) {
+
+    document.getElementById("ModelSelection").style.display = "block";
+
     // create regression button
     var regressButton = document.createElement("button");
     regressButton.id = "regressButton";
-    regressButton.className = 'btn btn-primary btn-x1';
+    regressButton.className = 'btn btn-outline-light btn-xl';
     regressButton.innerHTML = "Regression";
+    regressButton.style.margin = "10px";
     document.getElementById("ModelTypeDiv").appendChild(regressButton);
     setupListeners(listener="regressButton");
 
     // create classification button
     var classifyButton = document.createElement("button");
     classifyButton.id = "classifyButton";
-    classifyButton.className = 'btn btn-primary btn-x1';
+    classifyButton.className = 'btn btn-outline-light btn-xl';
     classifyButton.innerHTML = "Classification";
+    classifyButton.style.margin = "10px";
     document.getElementById("ModelTypeDiv").appendChild(classifyButton);
     setupListeners(listener="classifyButton");
+
+    $('html, body').animate({scrollTop: $('#ModelSelection').offset().top}, 'slow');
   }
 
   // wrapper for feature selection setupListeners
@@ -177,6 +186,8 @@ $(document).ready(function() {
       var button = document.createElement("button");
       button.id = "model" + m;
       button.innerHTML = response[m];
+      button.className = 'btn';
+      button.style.margin = "5px";
       document.getElementById("ModelSelectDiv").appendChild(button);
       listenModel("model" + m);
     }
