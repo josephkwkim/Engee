@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from models.button_func import testFunc
-from models.process_data import load_dataset, get_column_names, get_first_rows
+from models.process_data import *
 from models.all_models import *
 
 app = Flask(__name__)
@@ -64,10 +64,10 @@ def process_page():
     ### Selecting Prediction Type ###
     elif rdata['phase'] == 3:
         if rdata['name'] == "Chose Regress":  # -> Regression Prediction
-            resp, glob_models = get_models(glob_X, glob_y, regression=True)
+            resp, glob_models = get_models(glob_X, glob_y, glob_df, regression=True)
         elif rdata['name'] == "Chose Classify":  # -> Classification Prediction
             type = "classification"
-            resp, glob_models = get_models(glob_X, glob_y, regression=False)
+            resp, glob_models = get_models(glob_X, glob_y, glob_df, regression=False)
         else:
             resp = "Phase 3 Huh? What is this?"
 

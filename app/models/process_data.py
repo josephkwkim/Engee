@@ -24,15 +24,3 @@ def get_first_rows(dataset):
     rows = dataset.head(30).values
     return [list(i) for i in rows]
 
-def get_relevant_dataset(x, y, dataset):
-    '''
-    :param x: list of strings of x-columns
-    :param y: string with name of y-column
-    :param dataset: pandas dataframe
-    :return: x ndarray and y ndarray
-    '''
-    assert(isinstance(x, list))
-    assert(isinstance(y, str))
-    df_x = dataset[x]
-    df_y = dataset[y]
-    return df_x.values, df_y.values

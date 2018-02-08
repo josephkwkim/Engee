@@ -7,6 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.svm import SVC, SVR
 from sklearn.neighbors import KNeighborsClassifier
 
+
 class Regressors(object):
     def __init__(self, x, y):
         self.x = x
@@ -102,7 +103,21 @@ class Classifiers(object):
         except:
             raise Exception("Data is invalid for selected model!")
 
-def get_models(x, y, regression = True):
+def get_relevant_dataset(x, y, dataset):
+    '''
+    :param x: list of strings of x-columns
+    :param y: string with name of y-column
+    :param dataset: pandas dataframe
+    :return: x ndarray and y ndarray
+    '''
+    assert(isinstance(x, list))
+    assert(isinstance(y, str))
+    df_x = dataset[x]
+    df_y = dataset[y]
+    return df_x.values, df_y.values
+
+def get_models(x_, y_, dataset, regression = True):
+    (x,y) = get_relevant_dataset(x_, y_, dataset)
     if regression:
         base = Regressors(x, y)
         attrs = [method_name for method_name in dir(base) if callable(getattr(base, method_name))][:5] #from stackoverflow
