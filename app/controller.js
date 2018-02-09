@@ -48,6 +48,7 @@ $(document).ready(function() {
   // add response to sel_model
   function selectModel(response) {
     sel_model.push(response);
+    window.open ('loading/load.html','_self', false);
     console.log("Selected " + response + " as Model!");
       $.ajax({
         url: 'http://' + host + ':5000/',
@@ -98,7 +99,7 @@ $(document).ready(function() {
         }
     }
 
-    // Unhide the Features Section
+    // unhide the Features Section
     document.getElementById("FeaturesSection").style.display = "block";
 
     // create feature choices
