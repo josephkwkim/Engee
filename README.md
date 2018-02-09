@@ -1,6 +1,8 @@
 # engee
 under construction...
 
+![engee icon](app/views/images/logo_md.png)
+
 remember to make engee-final
 
 **Dependencies:**
