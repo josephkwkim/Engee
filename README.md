@@ -1,9 +1,7 @@
 # engee
 under construction...
 
-![engee icon](app/views/images/logo_sm.png)
-
-remember to make engee-final
+![engee icon](app/views/images/logo_md.png)
 
 # Dependencies
 * Bootstrap
