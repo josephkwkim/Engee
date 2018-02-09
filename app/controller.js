@@ -5,6 +5,7 @@ $(document).ready(function() {
   var host = 'localhost';
   var sel_features = [];
   var sel_target = []; // only one item
+  var selected_target;
   var sel_model = []; // only one item
 
   function init() {
@@ -194,10 +195,12 @@ $(document).ready(function() {
         console.log(featureChoice.style.backgroundColor);
         if (featureChoice.style.backgroundColor == 'rgb(244, 222, 199)') {
           featureChoice.style.backgroundColor = '#AB6B3A';
+          featureChoice.style.color = 'white';
           selectFeature(featureChoice.innerHTML);
         }
         else {
           featureChoice.style.backgroundColor = '#F4DEC7';
+          featureChoice.style.color = 'black';
           unselectFeature(featureChoice.innerHTML);
         }
       });
@@ -212,10 +215,21 @@ $(document).ready(function() {
         console.log(targetChoice.style.backgroundColor);
         if (targetChoice.style.backgroundColor == 'rgb(244, 222, 199)') {
           targetChoice.style.backgroundColor = '#AB6B3A';
+          targetChoice.style.color = 'white';
+
+          if (selected_target != null){
+            prevTargetChoice = selected_target;
+            prevTargetChoice.style.backgroundColor = '#F4DEC7';
+            prevTargetChoice.style.color = 'black';
+            unselectTarget(prevTargetChoice.innerHTML);
+          }
+
+          selected_target = targetChoice;
           selectTarget(targetChoice.innerHTML);
         }
         else {
           targetChoice.style.backgroundColor = '#F4DEC7';
+          targetChoice.style.color = 'black';
           unselectTarget(targetChoice.innerHTML);
         }
       });
@@ -228,7 +242,7 @@ $(document).ready(function() {
       var button = document.createElement("button");
       button.id = "model" + m;
       button.innerHTML = response[m];
-      button.className = 'btn btn-var-unclicked';
+      button.className = 'btn';
       button.style.margin = "5px";
       document.getElementById("ModelSelectDiv").appendChild(button);
       listenModel("model" + m);
