@@ -27,6 +27,24 @@ $(document).ready(function() {
     console.log("Selected " + response + " as Target!");
   }
 
+  // remove response from sel_features
+  function unselectFeature(response) {
+    var index = sel_features.indexOf(response);
+    if (index > -1) {
+      sel_features.splice(index, 1);
+    }
+    console.log("Unselected " + response + " as Feature!");
+  }
+
+  // remove response from sel_target
+  function unselectTarget(response) {
+    var index = sel_target.indexOf(response);
+    if (index > -1) {
+      sel_target.splice(index, 1);
+    }
+    console.log("Unselected " + response + " as Target!");
+  }
+
   // add response to sel_model
   function selectModel(response) {
     sel_model.push(response);
@@ -86,10 +104,11 @@ $(document).ready(function() {
     // create feature choices
     for (var c = 0; c < num_columns; c++) {
       var button = document.createElement("button");
-      button.className = 'btn btn-var-unclicked';
+      button.className = 'btn';
       button.id = "attributeF" + c;
       button.innerHTML = all_rows[0][c];
       button.style.margin = "5px";
+      button.style.backgroundColor = "#F4DEC7";
       document.getElementById("FeaturesDiv").appendChild(button);
       listenFeature("attributeF" + c);
     }
@@ -103,6 +122,7 @@ $(document).ready(function() {
     setupListeners(listener="chooseButtonX");
 
     $('html, body').animate({scrollTop: $('#model').offset().top}, 'slow');
+    document.getElementById("file").disabled = true;
   }
 
   // for generating interface after selecting features
@@ -116,10 +136,11 @@ $(document).ready(function() {
     for (var c = 0; c < num_columns; c++) {
       if (sel_features.indexOf(all_rows[0][c]) == -1) {
         var button = document.createElement("button");
-        button.className = 'btn btn-var-unclicked';
+        button.className = 'btn';
         button.id = "attributeT" + c;
         button.innerHTML = all_rows[0][c];
         button.style.margin = "5px";
+        button.style.backgroundColor = "#F4DEC7";
         document.getElementById("TargetDiv").appendChild(button);
         listenTarget("attributeT" + c);
       }
@@ -134,6 +155,7 @@ $(document).ready(function() {
     setupListeners(listener="chooseButtonY");
 
     $('html, body').animate({scrollTop: $('#TargetSection').offset().top}, 'slow');
+    document.getElementById("chooseButtonX").disabled = true;
   }
 
   // for generating interface after selecting target
@@ -160,17 +182,25 @@ $(document).ready(function() {
     setupListeners(listener="classifyButton");
 
     $('html, body').animate({scrollTop: $('#ModelSelection').offset().top}, 'slow');
+    document.getElementById("chooseButtonY").disabled = true;
   }
 
   // wrapper for feature selection setupListeners
   function listenFeature(id) {
     var featureChoice = document.getElementById(id);
-    //if (featureChoice.instanceof("btn-var-unclicked") {
-      if (typeof window.addEventListener==='function') {
-        featureChoice.addEventListener ("click", function() {
-          selectFeature(featureChoice.innerHTML) });
+    if (typeof window.addEventListener==='function') {
+      featureChoice.addEventListener ("click", function() {
+        console.log(featureChoice.style.backgroundColor);
+        if (featureChoice.style.backgroundColor == 'rgb(244, 222, 199)') {
+          featureChoice.style.backgroundColor = '#AB6B3A';
+          selectFeature(featureChoice.innerHTML);
+        }
+        else {
+          featureChoice.style.backgroundColor = '#F4DEC7';
+          unselectFeature(featureChoice.innerHTML);
+        }
+      });
       }
-    //}
   }
 
   // wrapper for target selection setupListeners
@@ -178,7 +208,16 @@ $(document).ready(function() {
     var targetChoice = document.getElementById(id);
     if (typeof window.addEventListener==='function') {
       targetChoice.addEventListener ("click", function() {
-        selectTarget(targetChoice.innerHTML) });
+        console.log(targetChoice.style.backgroundColor);
+        if (targetChoice.style.backgroundColor == 'rgb(244, 222, 199)') {
+          targetChoice.style.backgroundColor = '#AB6B3A';
+          selectTarget(targetChoice.innerHTML);
+        }
+        else {
+          targetChoice.style.backgroundColor = '#F4DEC7';
+          unselectTarget(targetChoice.innerHTML);
+        }
+      });
     }
   }
 
@@ -193,6 +232,8 @@ $(document).ready(function() {
       document.getElementById("ModelSelectDiv").appendChild(button);
       listenModel("model" + m);
     }
+    document.getElementById("regressButton").disabled = true;
+    document.getElementById("classifyButton").disabled = true;
   }
 
   // wrapper for model selection setupListeners
@@ -249,40 +290,42 @@ $(document).ready(function() {
 
     // condition for selecting features
     if (listener == "chooseButtonX") {
-      $( "#chooseButtonX" ).click( function( event ) {
-        console.log("Chose Features!");
-        //var features = document.getElementById("FeaturesText");
-        //var target = document.getElementById("TargetText");
-        $.ajax({
-          url: 'http://' + host + ':5000/',
-          type: 'POST',
-          data: JSON.stringify({
-            name: "Chose Features",
-            phase: 2,
-            features: sel_features
-            }),
-          contentType: 'application/json',
-          dataType: 'json',
-        }).done((response) => { processFeatures(response) } );
-      } );
+        $( "#chooseButtonX" ).click( function( event ) {
+          if (sel_features.length > 0) {
+            console.log("Chose Features!");
+            $.ajax({
+              url: 'http://' + host + ':5000/',
+              type: 'POST',
+              data: JSON.stringify({
+                name: "Chose Features",
+                phase: 2,
+                features: sel_features
+                }),
+              contentType: 'application/json',
+              dataType: 'json',
+            }).done((response) => { processFeatures(response) } );
+          }
+        } );
     }
 
-    // condition for selecting features
+    // condition for selecting target
     if (listener == "chooseButtonY") {
-      $( "#chooseButtonY" ).click( function( event ) {
-        console.log("Chose Target!");
-        $.ajax({
-          url: 'http://' + host + ':5000/',
-          type: 'POST',
-          data: JSON.stringify({
-            name: "Chose Target",
-            phase: 2,
-            target: sel_target
-            }),
-          contentType: 'application/json',
-          dataType: 'json',
-        }).done((response) => { processTarget(response) } );
-      } );
+        $( "#chooseButtonY" ).click( function( event ) {
+          if (sel_target.length > 0) {
+            console.log("Chose Target!");
+            $.ajax({
+              url: 'http://' + host + ':5000/',
+              type: 'POST',
+              data: JSON.stringify({
+                name: "Chose Target",
+                phase: 2,
+                target: sel_target
+                }),
+              contentType: 'application/json',
+              dataType: 'json',
+            }).done((response) => { processTarget(response) } );
+          }
+        } );
     }
 
     // condition for selecting regression models
