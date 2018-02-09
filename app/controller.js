@@ -163,7 +163,8 @@ $(document).ready(function() {
   // for generating interface after selecting target
   function processTarget(response) {
 
-    document.getElementById("ModelSelection").style.display = "block";
+    //Unhide Model Type
+    document.getElementById("ModelType").style.display = "block";
 
     // create regression button
     var regressButton = document.createElement("button");
@@ -183,7 +184,7 @@ $(document).ready(function() {
     document.getElementById("ModelTypeDiv").appendChild(classifyButton);
     setupListeners(listener="classifyButton");
 
-    $('html, body').animate({scrollTop: $('#ModelSelection').offset().top}, 'slow');
+    $('html, body').animate({scrollTop: $('#ModelType').offset().top}, 'slow');
     document.getElementById("chooseButtonY").disabled = true;
   }
 
@@ -242,13 +243,26 @@ $(document).ready(function() {
       var button = document.createElement("button");
       button.id = "model" + m;
       button.innerHTML = response[m];
-      button.className = 'btn';
-      button.style.margin = "5px";
+      button.className = 'btn btn-primary text-uppercase';
+
+      button.style.height = '180px';
+      button.style.width = '180px';
+      button.style.borderRadius = '50%';
+      button.style.fontSize = '1.2em';
+      button.style.margin = "10px";
+      button.style.whiteSpace = 'normal';
+      button.style.fontFamily = 'Lato';
+      button.style.fontWeight = 'bold';
+      
       document.getElementById("ModelSelectDiv").appendChild(button);
       listenModel("model" + m);
     }
+    //Unhide Model Selection
+    document.getElementById("ModelSelection").style = 'display:block';
     document.getElementById("regressButton").disabled = true;
     document.getElementById("classifyButton").disabled = true;
+    $('html, body').animate({scrollTop: $('#ModelSelection').offset().top}, 'slow');
+
   }
 
   // wrapper for model selection setupListeners

@@ -365,7 +365,7 @@ a:focus, a:hover, a:active {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #9198C4;
+  background-color: #503A60;
   border-color: #9198C4;
 }
 
@@ -379,12 +379,18 @@ a:focus, a:hover, a:active {
   border-color: #1a252f;
 }
 
-.btn-var-unclicked {
-  background-color: #F4DEC7;
-  color: black;
+.btn-circle {
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  background-color: #6798D3;
+  border-color: white;
+  border: 3px;
+  color: white;
+  font-size: 1.5em;
 }
 
-.btn-var-clicked {
-  background-color: #AB6B3A;
-  color: white
+.btn-circle:hover, .btn-circle:focus, .btn-circle:active {
+  background-color: #503A60;
+  border-color: black;
 }
