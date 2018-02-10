@@ -63,7 +63,7 @@ $(document).ready(function() {
     // OPEN THE LOADING SCREEN
     document.getElementById('loader-wrapper').style = 'display:block';
     document.getElementById('Page1').style = 'display:none';
-    
+
     var oldLabel = document.getElementById('LabelPrediction');
     if (oldLabel != null) oldLabel.parentNode.removeChild(oldLabel);
 
@@ -543,7 +543,7 @@ $(document).ready(function() {
     // condition for init
     if (listener == "") {
       $("#HomeButton").click(function(event) {
-          window.location = index.html;
+          window.location = "index.html";
           window.location.reload();
       });
 
