@@ -63,6 +63,10 @@ $(document).ready(function() {
     // OPEN THE LOADING SCREEN
     document.getElementById('loader-wrapper').style = 'display:block';
     document.getElementById('Page1').style = 'display:none';
+    
+    var oldLabel = document.getElementById('LabelPrediction');
+    if (oldLabel != null) oldLabel.parentNode.removeChild(oldLabel);
+
     $('body').removeClass('loaded');
 
     console.log("Selected " + response + " as Model!");
@@ -165,19 +169,30 @@ $(document).ready(function() {
       for (var f = 0; f < sel_features.length; f++) {
         var labelFeature = document.createElement("Label");
         var inputFeature = document.createElement("input");
+        var br1 = document.createElement("br");
+        var br2 = document.createElement("br");
+        var br3 = document.createElement("br");
 
         inputFeature.id = "inputF" + f;
         labelFeature.id = "labelF" + f;
         labelFeature.innerHTML = sel_features[f];
+        labelFeature.style.fontSize = "1.5em";
         document.getElementById('PredictionInputs').appendChild(labelFeature);
+        document.getElementById('PredictionInputs').appendChild(br1);
         document.getElementById('PredictionInputs').appendChild(inputFeature);
+        document.getElementById('PredictionInputs').appendChild(br2);
+        document.getElementById('PredictionInputs').appendChild(br3);
       }
 
       // create prediction button
+      var oldPredButton = document.getElementById('PredictButton');
+      if (oldPredButton != null) oldPredButton.parentNode.removeChild(oldPredButton);
+
       var predictButton = document.createElement("button");
       predictButton.id = "PredictButton"
+      predictButton.className = 'btn btn-primary btn-xl';
       predictButton.innerHTML = "Predict";
-      document.getElementById('PredictionInputs').appendChild(predictButton);
+      document.getElementById('PredictionButton').appendChild(predictButton);
       setupListeners("predictButton");
 
       clearTimeout(model_status);
@@ -515,9 +530,13 @@ $(document).ready(function() {
   // create space for prediction to be shown
   function displayPrediction(response) {
     var labelPrediction = document.createElement("Label");
+    var oldLabel = document.getElementById('LabelPrediction');
+    if (oldLabel != null) oldLabel.parentNode.removeChild(oldLabel);
+
     labelPrediction.id = "LabelPrediction";
     labelPrediction.innerHTML = response;
-    document.getElementById('PredictionInputs').appendChild(labelPrediction);
+    labelPrediction.style.fontSize = "1.5em";
+    document.getElementById('PredictionLabel').appendChild(labelPrediction);
   }
 
   function setupListeners(listener = "") {
@@ -677,6 +696,18 @@ $(document).ready(function() {
           }).done((response) => {
             displayPrediction(response)
           });
+       }
+       else {
+         var oldLabel = document.getElementById('LabelPrediction');
+         if (oldLabel != null) oldLabel.parentNode.removeChild(oldLabel);
+
+         var PredictionErrorMessage = document.createElement('label');
+         PredictionErrorMessage.id = "LabelPrediction";
+         PredictionErrorMessage.innerHTML = "ERROR: Invalid or Empty Inputs";
+         PredictionErrorMessage.style.color = "Red";
+         PredictionErrorMessage.style.fontSize = "1.5em";
+
+         document.getElementById('PredictionLabel').appendChild(PredictionErrorMessage)
        }
       });
     }

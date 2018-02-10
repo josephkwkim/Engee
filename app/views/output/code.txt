@@ -1,0 +1,8 @@
+import pandas as pd
+dataframe = pd.read_csv('iris.csv')
+x = dataframe[['SepalWidthCm', 'SepalLengthCm', 'PetalWidthCm']]
+y = dataframe['PetalLengthCm']
+from sklearn.ensemble import GradientBoostingRegressor
+model = GradientBoostingRegressor()
+model.fit(x, y) # your x and y data here
+r_2_score = model.score(x, y) # r^2 score of the trained model
