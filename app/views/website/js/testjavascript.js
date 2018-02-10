@@ -4,14 +4,6 @@ var sel_target = []; // only one item
 var selected_target;
 var sel_model = []; // only one item
 
-document.getElementById("selectedNeuralNetwork").onclick = function() {selectModel()}
-document.getElementById("selectedLinearRegression").onclick = function () { selectModel() }
-document.getElementById("selectedLasso").onclick = function () { selectModel() }
-document.getElementById("selectedGradient").onclick = function () { selectModel() }
-document.getElementById("selectedSupportVector").onclick = function () { selectModel() }
-
-
-
 // for generating interface after selecting dataset
 function displayData(response) {
 	column_names = response.column_names;
@@ -64,7 +56,7 @@ function changeColor() {
 	else{
 		document.getElementById("param1").style.color = "grey";
 	}
- 
+
 }
 
 function changeColor2() {
@@ -75,7 +67,7 @@ function changeColor2() {
 	else{
 		document.getElementById("param2").style.color = "grey";
 	}
- 
+
 }
 
 function increaseHue(x){

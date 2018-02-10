@@ -34,7 +34,6 @@
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
   <!-- Model Page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="css/sb-admin.css" rel="stylesheet">
 
 </head>
@@ -298,7 +297,7 @@
                 </div>
 
                 <div id="Neural1" class="model-description" style='display:none;'>
-                  <h3> Neural Network Regressor </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
+                  <h3> Neural Network </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
                 </div>
 
                 <div id="Support1" class="model-description" style='display:none;'>
@@ -320,7 +319,7 @@
                 </div>
 
                 <div id="Neural2" class="model-description" style='display:none;'>
-                  <h3> Neural Network Regressor </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
+                  <h3> Neural Network </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
                 </div>
 
                 <div id="RandomForest" class="model-description" style='display:none;'>
@@ -334,6 +333,9 @@
               </div>
 
             </div>
+
+            <div id="ErrorMessage" class="text-center mt-4 col-lg-12" style="color: red; display:none;">
+              <h3> ERROR </h3> Something has gone wrong with loading your model! </div>
 
           </div>
 
@@ -465,7 +467,7 @@
 
       <!-- Navigation-->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="modelNav">
-        <a class="navbar-brand" href="index.html">Home</a>
+        <a id="HomeButton" class="navbar-brand">Home</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     		  <span class="navbar-toggler-icon"></span>
     		</button>
@@ -580,22 +582,10 @@
               <b>Using the input boxes below, you can put in custom parameters and see what your model predicts from your data set.</b>
             </div>
             <br>
-            <form style="margin-left:calc(50% - 350px); float:left; display:inline-block;" onsubmit="return predictFunction(); ">
-              Input 1:
               <br>
-              <input type="text" name="firstpredictor">
-              <br> Input 2:
-              <br>
-              <input type="text" name="secondpredictor">
-              <br> Input 3:
-              <br>
-              <input type="text" name="thirdpredictor">
-              <br>
-              <br>
-              <input type="submit" value="Predict" onclick="">
-            </form>
-            <textarea style=" margin-left:calc(50% - 550px); display:inline-block; margin-bottom:75px;" rows="7" cols="50" ; readonly>
-          			</textarea>
+              <div id="PredictionInputs"> </div>
+            </br>
+          </br>
           </div>
 
 
@@ -658,14 +648,9 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
-    <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
+
 
 </body>
 

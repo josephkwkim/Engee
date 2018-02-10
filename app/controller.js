@@ -119,40 +119,72 @@ $(document).ready(function() {
 
   // for when the model has finished training
   function displayMetrics(response) {
-    var modelButton1 = document.getElementById('selectedModel1');
-    modelButton1.innerHTML = list_models[0];
-    listenSelectedModel(1);
-    var modelButton2 = document.getElementById('selectedModel2');
-    modelButton2.innerHTML = list_models[1];
-    listenSelectedModel(2);
-    var modelButton3 = document.getElementById('selectedModel3');
-    modelButton3.innerHTML = list_models[2];
-    listenSelectedModel(3);
-    var modelButton4 = document.getElementById('selectedModel4');
-    modelButton4.innerHTML = list_models[3];
-    listenSelectedModel(4);
-    var modelButton5 = document.getElementById('selectedModel5');
-    modelButton5.innerHTML = list_models[4];
-    listenSelectedModel(5);
+    if (response[0] == "ERROR") {
+      document.getElementById('ErrorMessage').style.display = 'block';
+      document.getElementById('Page1').style = 'display:block';
+      document.location.href="#ModelSelection";
+      $('body').addClass('loaded');
+    }
+    else {
+      // generate side buttons for reselection
+      var modelButton1 = document.getElementById('selectedModel1');
+      modelButton1.innerHTML = list_models[0];
+      listenSelectedModel(1);
+      var modelButton2 = document.getElementById('selectedModel2');
+      modelButton2.innerHTML = list_models[1];
+      listenSelectedModel(2);
+      var modelButton3 = document.getElementById('selectedModel3');
+      modelButton3.innerHTML = list_models[2];
+      listenSelectedModel(3);
+      var modelButton4 = document.getElementById('selectedModel4');
+      modelButton4.innerHTML = list_models[3];
+      listenSelectedModel(4);
+      var modelButton5 = document.getElementById('selectedModel5');
+      modelButton5.innerHTML = list_models[4];
+      listenSelectedModel(5);
 
-    var modelNameLabel = document.getElementById('modelName');
-    modelNameLabel.innerHTML = sel_model;
+      // display model name
+      var modelNameLabel = document.getElementById('modelName');
+      modelNameLabel.innerHTML = sel_model;
 
-    var modelLabel = document.getElementById('modelHeading');
-    modelLabel.innerHTML = sel_model;
+      // display model heading
+      var modelLabel = document.getElementById('modelHeading');
+      modelLabel.innerHTML = sel_model;
 
-    var scoreLabel = document.getElementById('modelAccuracy');
-    scoreLabel.innerHTML = response[0];
+      // display model accuracy
+      var scoreLabel = document.getElementById('modelAccuracy');
+      scoreLabel.innerHTML = response[0];
 
-    document.getElementById('plot1').src = '../output/plot1.jpg';
-    document.getElementById('plot2').src = '../output/plot2.jpg';
+      // plot graphs
+      document.getElementById('plot1').src = '../output/plot1.jpg';
+      document.getElementById('plot2').src = '../output/plot2.jpg';
 
-    document.getElementById('codeSnippet').value = response[1];
+      // output code snippet
+      document.getElementById('codeSnippet').value = response[1];
 
-    clearTimeout(model_status);
-    //train_time = 0.0;
-    $('body').addClass('loaded');
-    document.getElementById('PageR').style = 'display:block';
+      for (var f = 0; f < sel_features.length; f++) {
+        var labelFeature = document.createElement("Label");
+        var inputFeature = document.createElement("input");
+
+        inputFeature.id = "inputF" + f;
+        labelFeature.id = "labelF" + f;
+        labelFeature.innerHTML = sel_features[f];
+        document.getElementById('PredictionInputs').appendChild(labelFeature);
+        document.getElementById('PredictionInputs').appendChild(inputFeature);
+      }
+
+      // create prediction button
+      var predictButton = document.createElement("button");
+      predictButton.id = "PredictButton"
+      predictButton.innerHTML = "Predict";
+      document.getElementById('PredictionInputs').appendChild(predictButton);
+      setupListeners("predictButton");
+
+      clearTimeout(model_status);
+      //train_time = 0.0;
+      $('body').addClass('loaded');
+      document.getElementById('PageR').style = 'display:block';
+    }
   }
 
   // for generating interface after selecting dataset
@@ -222,8 +254,6 @@ $(document).ready(function() {
 
   // for generating interface after selecting features
   function processFeatures(response) {
-    // DISPLAY CHOSEN BUTTONS
-
     // display Target title
     document.getElementById("TargetSection").style.display = "block";
 
@@ -336,6 +366,10 @@ $(document).ready(function() {
     list_models = response;
     // create model choices
     for (var m = 0; m < response.length; m++) {
+      // drop old buttons if they exist
+      var oldButton = document.getElementById('model' + m);
+      if (oldButton != null) oldButton.parentNode.removeChild(oldButton);
+
       var button = document.createElement("button");
       button.id = "model" + m;
       button.innerHTML = response[m];
@@ -355,8 +389,8 @@ $(document).ready(function() {
     }
     //Unhide Model Selection
     document.getElementById("ModelSelection").style = 'display:block';
-    document.getElementById("regressButton").disabled = true;
-    document.getElementById("classifyButton").disabled = true;
+    //document.getElementById("regressButton").disabled = true;
+    //document.getElementById("classifyButton").disabled = true;
     $('html, body').animate({
       scrollTop: $('#ModelSelection').offset().top
     }, 'slow');
@@ -463,7 +497,6 @@ $(document).ready(function() {
 
   });
 
-
   // wrapper for model selection setupListeners
   function listenModel(id) {
     var modelChoice = document.getElementById(id);
@@ -479,9 +512,22 @@ $(document).ready(function() {
     console.log("Loading...");
   }
 
+  // create space for prediction to be shown
+  function displayPrediction(response) {
+    var labelPrediction = document.createElement("Label");
+    labelPrediction.id = "LabelPrediction";
+    labelPrediction.innerHTML = response;
+    document.getElementById('PredictionInputs').appendChild(labelPrediction);
+  }
+
   function setupListeners(listener = "") {
     // condition for init
     if (listener == "") {
+      $("#HomeButton").click(function(event) {
+          window.location = index.html;
+          window.location.reload();
+      });
+
       // listener for iris selection
       $("#SelectIris").click(function(event) {
         console.log("FRONT: Clicked on Iris");
@@ -588,7 +634,7 @@ $(document).ready(function() {
     // condition for selecting classification models
     if (listener == "classifyButton") {
       $("#classifyButton").click(function(event) {
-        console.log("Chose CLassification Models!");
+        console.log("Chose Classification Models!");
         model_type = 'Classification';
         $.ajax({
           url: 'http://' + host + ':5000/',
@@ -602,6 +648,36 @@ $(document).ready(function() {
         }).done((response) => {
           processModelList(response)
         });
+      });
+    }
+
+    // condition for making a prediction
+    if (listener == "predictButton") {
+      $("#PredictButton").click(function(event) {
+        console.log("Made Prediction");
+        var predFail = false;
+        var predictThis = [];
+        for (var f = 0; f < sel_features.length; f++) {
+          var feature = document.getElementById("inputF" + f);
+          var input = feature.value;
+          if (input === "" || isNaN(input)) predFail = true;
+          predictThis.push(input);
+        }
+        if (!predFail) {
+          $.ajax({
+            url: 'http://' + host + ':5000/',
+            type: 'POST',
+            data: JSON.stringify({
+              name: "Make Prediction",
+              phase: 6,
+              predictThis: predictThis
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+          }).done((response) => {
+            displayPrediction(response)
+          });
+       }
       });
     }
 

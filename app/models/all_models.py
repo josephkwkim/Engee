@@ -173,14 +173,17 @@ def run_model(model_name, base_class):
     actual_method = getattr(base_class, method_name)
     results = actual_method()
     if not isinstance(results, list):
-        return "ERROR"
+        return "ERROR", ""
     clean_txt('views/output/code.txt')
     model_class = results[0]
     score = results[1]
     x_train, x_test, y_train, y_test = (base_class.x_train, base_class.x_test,
                                         base_class.y_train, base_class.y_test)
 
+    clean_txt('views/output/code.txt')
     code = open('views/output/code.txt').read()
+    while "\n\n" in code:
+        code = code.replace('\n\n', '\n')
     # Saves two plots and returns the score
     if is_regression:
         reduced_x = PCA(n_components=1).fit_transform(x_test)
@@ -233,11 +236,12 @@ def predict(x, model_name, base_class):
     actual_method = getattr(base_class, method_name)
     results = actual_method()
     model_class = results[0]
-    initial_pred = model_class.predict(x)
+    x = np.array(x).astype('float')
+    initial_pred = model_class.predict(x.reshape(1, -1))
     if not base_class.regression:
-        return base_class.le.inverse_transform(initial_pred)
+        return base_class.le.inverse_transform(initial_pred)[0]
     else:
-        return initial_pred
+        return initial_pred[0]
 
 def clean_txt(fpath):
     with open(fpath) as file:
@@ -245,6 +249,8 @@ def clean_txt(fpath):
     lines = txt.splitlines()
     cleaned = [i.strip() for i in lines]
     new = '\n'.join(cleaned)
+    while "\n\n" in new:
+        new = new.replace('\n\n', '\n')
     with open(fpath, 'w') as file:
         file.write(new)
         file.close()
@@ -263,6 +269,7 @@ def clean_old_code(filename):
         with open(filename, 'w') as file:
             file.write(text.strip())
             file.close()
+    clean_txt(filename)
     return
 
 def export_code(model):

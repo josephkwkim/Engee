@@ -90,6 +90,15 @@ def process_page():
         else:
             resp = "Phase 5 Huh? What is this?"
 
+    ### Training Prediction Model ###
+    elif rdata['phase'] == 6:
+        if rdata['name'] == "Make Prediction":  # -> Request to Make Prediction
+            predictThis = rdata['predictThis']
+            resp = predict(predictThis, glob_model, glob_models)
+            print("PREDICTION:", resp)
+        else:
+            resp = "Phase 6 Huh? What is this?"
+
 
     print('Sent to JavaScript:', resp, jsonify(resp), '\n')
     return jsonify(resp)
