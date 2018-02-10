@@ -431,6 +431,48 @@ hr.info-dark:after {
   background-color: white;
 }
 
-hr.info-light:hover, hr.info-light:active, hr.info-dark:hover, hr.info-dark:hover{
+hr.info-light:hover, hr.info-light:active, hr.info-dark:hover, hr.info-dark:hover {
   background-color: black;
+}
+
+.info-div {
+  width: 250px;
+  height: 80px;
+}
+
+.info-div .info-text {
+  visibility: hidden;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  position: relative;
+  z-index: 900;
+  top: -100px;
+  left: 550px;
+}
+
+.info-div .info-text .info-content {
+  width: 350px;
+  background-color: #503A60;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+  z-index: 900;
+}
+
+.info-div:hover .info-text .info-content {
+  visibility: visible;
+}
+
+.info-div .info-text .info-content::after {
+  content: " ";
+  position: absolute;
+  position: absolute;
+  top: 20%;
+  right: 100%;
+
+  margin-top: -15px;
+  border-width: 15px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
 }
