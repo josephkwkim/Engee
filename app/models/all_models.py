@@ -261,7 +261,7 @@ def clean_old_code(filename):
     else:
         text = text[:index]
         with open(filename, 'w') as file:
-            file.write(text)
+            file.write(text.strip())
             file.close()
     return
 
