@@ -45,50 +45,53 @@
 						<span class="nav-link-text">Change Model</span>
 				  </a>
 				  <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-						<div class="border1" id="neuralDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
-							 Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems
-							learn tasks by considering examples, generally without task-specific programming.
+						<div class="border1" id="neuralDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
+							Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems
+							learn tasks by considering examples, generally without task-specific programming. Trades speed for accuracy. Typically better for classification, but can be good for regression too.</span>
 						</div>
+						<div class="arrow-left1" id="neuralTriangle" style="display:none;"></div>
 
-						<div class="border2" id="gradientDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border2" id="gradientDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
 							Gradient boosting is a machine learning technique for regression problems, which produces a prediction model in the form
-							of an ensemble of weak prediction models, typically decision trees.
-						
+							of an ensemble of weak prediction models, typically decision trees. Trades speed for accuracy
 						</div>
+						<div class="arrow-left2" id="gradientTriangle" style="display:none;"></div>
 
-						<div class="border3" id="lassoDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border3" id="lassoDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
 							LASSO (least absolute shrinkage and selection operator) is a regression analysis method that performs both variable selection
 							and regularization in order to enhance the prediction accuracy and interpretability of the statistical model it produces.
-						
 						</div>
-						
-						<div class="border4" id="regressionDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
-							Linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more
-							explanatory variables denoted X.
-						
-						</div>
+						<div class="arrow-left3" id="lassoTriangle" style="display:none;"></div>
 
-						<div class="border5" id="vectorDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border4" id="regressionDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
+							Linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more
+							explanatory variables denoted X. Simple and quick model; usually a good baseline.
+						
+						</div>
+						<div class="arrow-left4" id="regressionTriangle" style="display:none;"></div>
+						<div class="border5" id="vectorDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
 							Support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification
 							and regression analysis.
 						
 						</div>
+						<div class="arrow-left5" id="vectorTriangle" style="display:none;"></div>
+
 						<li>
 							<!-- should link to loading-->
-							<a href="#" class="popup" id = "selectedNeuralNetwork" onmouseover="popupAppear(neuralDisplay);increaseHue(this)"; onmouseout="originalHue(this);popupDisappear(neuralDisplay)";>Neural Network</a>	  
+							<a href="#" id = "selectedNeuralNetwork" onmouseover="popupAppear(neuralDisplay,neuralTriangle);increaseHue(this)"; onmouseout="originalHue(this);popupDisappear(neuralDisplay,neuralTriangle)";>Neural Network</a>	  
 
 						</li>
 						<li>
-						 	 <a href="#" id = "selectedGradient" onmouseover="increaseHue(this);popupAppear(gradientDisplay)"; onmouseout="originalHue(this);popupDisappear(gradientDisplay)";>Gradient Boosting Regression</a>
+						 	 <a href="#" id = "selectedGradient" onmouseover="increaseHue(this);popupAppear(gradientDisplay,gradientTriangle)"; onmouseout="originalHue(this);popupDisappear(gradientDisplay,gradientTriangle)";>Gradient Boosting Regression</a>
 						</li>
 						<li>
-						  	<a href="#" id = "selectedLasso" onmouseover="increaseHue(this);popupAppear(lassoDisplay)"; onmouseout="originalHue(this);popupDisappear(lassoDisplay)";>LASSO Regression</a>
+						  	<a href="#" id = "selectedLasso" onmouseover="increaseHue(this);popupAppear(lassoDisplay,lassoTriangle)"; onmouseout="originalHue(this);popupDisappear(lassoDisplay,lassoTriangle)";>LASSO Regression</a>
 						</li>
 						<li>
-						  <a href="#" id= "selectedLinearRegression" onmouseover="increaseHue(this);popupAppear(regressionDisplay)" onmouseout="originalHue(this);popupDisappear(regressionDisplay)">Linear Regression</a>
+						  <a href="#" id= "selectedLinearRegression" onmouseover="increaseHue(this);popupAppear(regressionDisplay,regressionTriangle)" onmouseout="originalHue(this);popupDisappear(regressionDisplay,regressionTriangle)">Linear Regression</a>
 						</li>
 						<li>
-							<a href="#" id = "selectedSupportVector" onmouseover="increaseHue(this);popupAppear(vectorDisplay)" onmouseout="originalHue(this);popupDisappear(vectorDisplay)">Support Vector Machine</a>
+							<a href="#" id = "selectedSupportVector" onmouseover="increaseHue(this);popupAppear(vectorDisplay,vectorTriangle)" onmouseout="originalHue(this);popupDisappear(vectorDisplay,vectorTriangle)">Support Vector Machine</a>
 						</li>
 				  </ul>
 				</li>
@@ -107,11 +110,23 @@
 		  <!-- Breadcrumbs-->
 		  <ol class="breadcrumb">
 				<li class="breadcrumb-item">
-				  <a href="#">Dashboard</a>
+				  <a href="index.html">Graphs</a>
 				</li>
-				<li class="breadcrumb-item active">My Dashboard</li>
+				<li class="breadcrumb-item active">Display Graphs</li>
 		  </ol>
 		<div class="row">
+			<!-- PRINTING THE TOP HEADERSSSS BOYYYY -->
+			<div style = "color: #353942; text-align: center;">
+				<font size="+20">
+					<b>Model:</b> 
+				</font>
+			</div>
+			<div class id="printModelName" style="color:#353942;">
+				
+			</div>
+			<div class id="printAccuracy"></div>
+
+
 			<img class="img-fluid  d-block mx-auto" src="graphs/lasso.png" alt="">
 			<div class="col-lg-12">
 				<!-- Example DataTables Card-->

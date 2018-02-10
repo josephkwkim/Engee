@@ -45,51 +45,56 @@
 						<span class="nav-link-text">Change Model</span>
 				  </a>
 				  <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-						<div class="border1" id="neuralDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border1" id="neuralDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
 							Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems
-							learn tasks by considering examples, generally without task-specific programming.
+							learn tasks by considering examples, generally without task-specific programming.Trades speed for accuracy. Typically better for classification, but can be good for regression too.
 						</div>
+						<div class="arrow-left1" id="neuralTriangle" style="display:none;"></div>
 
-						<div class="border6" id="logisticDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border6" id="logisticDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
                             Logistic regression, or logit model, is a regression model where the dependent variable is categorical. In binary logistic
-                            regression, output can take only two values, "0" and "1".
+                            regression, output can take only two values, "0" and "1". Trades accuracy for speed and produces explainable answers
 						
 						</div>
+						<div class="arrow-left6" id="logisticTriangle" style="display:none;"></div>
 
-						<div class="border7" id="kNearestDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border7" id="kNearestDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
                             In pattern recognition, the k-nearest neighbors algorithm is a non-parametric method used for classification. In both cases,
                             the input consists of the k closest training examples in the feature space. In k-NN classification, the output is a class
                             membership. An object is classified by a majority vote of its neighbors.
 						
 						</div>
+						<div class="arrow-left7" id="kNearestTriangle" style="display:none;"></div>
 						
-						<div class="border8" id="forestDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border8" id="forestDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
                             Random forests are an ensemble learning method for classification, that operate by constructing a multitude of decision
-                            trees at training time and outputting the class that is the mode of the classes.
+                            trees at training time and outputting the class that is the mode of the classes. Trades speed for accuracy.
 						
 						</div>
+						<div class="arrow-left8" id="forestTriangle" style="display:none;"></div>
 
-						<div class="border5" id="vectorDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+						<div class="border5" id="vectorDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
 							Support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification
 							and regression analysis.
 						
 						</div>
+						<div class="arrow-left5" id="vectorTriangle" style="display:none;"></div>
 						<li>
 							<!-- should link to loading-->
-							<a href="#" class="popup" id = "selectedNeuralNetwork" onmouseover="popupAppear(neuralDisplay);increaseHue(this)"; onmouseout="originalHue(this);popupDisappear(neuralDisplay)";>Neural Network</a>	  
+							<a href="#" class="popup" id = "selectedNeuralNetwork" onmouseover="popupAppear(neuralDisplay,neuralTriangle);increaseHue(this)"; onmouseout="originalHue(this);popupDisappear(neuralDisplay,neuralTriangle)";>Neural Network</a>	  
 
 						</li>
 						<li>
-						 	 <a href="#" id = "selectedLogistic" onmouseover="increaseHue(this);popupAppear(logisticDisplay)"; onmouseout="originalHue(this);popupDisappear(logisticDisplay)";>Logistic Regression</a>
+						 	 <a href="#" id = "selectedLogistic" onmouseover="increaseHue(this);popupAppear(logisticDisplay,logisticTriangle)"; onmouseout="originalHue(this);popupDisappear(logisticDisplay,logisticTriangle)";>Logistic Regression</a>
 						</li>
 						<li>
-						  	<a href="#" id = "selectedKNearest" onmouseover="increaseHue(this);popupAppear(kNearestDisplay)"; onmouseout="originalHue(this);popupDisappear(kNearestDisplay)";>k-Nearest Neighbors</a>
+						  	<a href="#" id = "selectedKNearest" onmouseover="increaseHue(this);popupAppear(kNearestDisplay,kNearestTriangle)"; onmouseout="originalHue(this);popupDisappear(kNearestDisplay,kNearestTriangle)";>k-Nearest Neighbors</a>
 						</li>
 						<li>
-						  <a href="#" id= "selectedLinearRegression" onmouseover="increaseHue(this);popupAppear(forestDisplay)" onmouseout="originalHue(this);popupDisappear(forestDisplay)">Random Forests</a>
+						  <a href="#" id= "selectedLinearRegression" onmouseover="increaseHue(this);popupAppear(forestDisplay,forestTriangle)" onmouseout="originalHue(this);popupDisappear(forestDisplay,forestTriangle)">Random Forests</a>
 						</li>
 						<li>
-							<a href="#" id = "selectedSupportVector" onmouseover="increaseHue(this);popupAppear(vectorDisplay)" onmouseout="originalHue(this);popupDisappear(vectorDisplay)">Support Vector Machine</a>
+							<a href="#" id = "selectedSupportVector" onmouseover="increaseHue(this);popupAppear(vectorDisplay,vectorTriangle)" onmouseout="originalHue(this);popupDisappear(vectorDisplay,vectorTriangle)">Support Vector Machine</a>
 						</li>
 				  </ul>
 				</li>
