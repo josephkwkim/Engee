@@ -11,6 +11,7 @@ $(document).ready(function() {
   var sel_model = []; // only one item
   var model_status;
   var model_type;
+  var train_time = 0.0;
 
   function init() {
     setupListeners();
@@ -77,6 +78,14 @@ $(document).ready(function() {
 
     model_status = setInterval(function() {
       console.log("Checking for Model Status...");
+
+      train_time = train_time + 0.5;
+      if (train_time > 30) {
+        clearInterval(model_status);
+        $('body').addClass('loaded');
+        console.log("Model Timed Out! Did you commit a MISTAKE?");
+      }
+
       $.ajax({
         url: 'http://' + host + ':5000/',
         type: 'POST',

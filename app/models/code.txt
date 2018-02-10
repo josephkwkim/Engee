@@ -1,9 +1,0 @@
-
-    import pandas as pd
-
-    dataframe = pd.read_csv({})
-    columns = dataframe.columns
-    x = dataframe[columns[:-1]]
-    y = dataframe[columns[-1]]
-
-    
