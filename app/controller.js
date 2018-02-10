@@ -9,9 +9,10 @@ $(document).ready(function() {
   var sel_target = []; // only one item
   var selected_target;
   var sel_model = []; // only one item
+  var list_models;
   var model_status;
   var model_type;
-  var train_time = 0.0;
+  //var train_time = 0.0;
 
   function init() {
     setupListeners();
@@ -53,6 +54,9 @@ $(document).ready(function() {
 
   // add response to sel_model
   function selectModel(response) {
+    if (sel_model.length > 0) {
+      sel_model.pop();
+    }
     sel_model.push(response);
     //window.open ('loading/load.html','_self', false);
 
@@ -76,15 +80,18 @@ $(document).ready(function() {
       displayLoading(response)
     });
 
-    model_status = setInterval(function() {
+    //train_time = 0.0;
+
+    model_status = setTimeout(function() {
       console.log("Checking for Model Status...");
+      /*console.log("Time: " + train_time);
 
       train_time = train_time + 0.5;
-      if (train_time > 30) {
+      if (train_time > 45) {
         clearInterval(model_status);
         $('body').addClass('loaded');
         console.log("Model Timed Out! Did you commit a MISTAKE?");
-      }
+      }*/
 
       $.ajax({
         url: 'http://' + host + ':5000/',
@@ -102,18 +109,50 @@ $(document).ready(function() {
 
   }
 
+  function listenSelectedModel(num) {
+    var selectedModel = document.getElementById("selectedModel" + num);
+    selectedModel.addEventListener("click", function() {
+      $('body').removeClass('loaded');
+      selectModel(selectedModel.innerHTML);
+    });
+  }
+
   // for when the model has finished training
   function displayMetrics(response) {
-    var score = response;
-    clearInterval(model_status);
+    var modelButton1 = document.getElementById('selectedModel1');
+    modelButton1.innerHTML = list_models[0];
+    listenSelectedModel(1);
+    var modelButton2 = document.getElementById('selectedModel2');
+    modelButton2.innerHTML = list_models[1];
+    listenSelectedModel(2);
+    var modelButton3 = document.getElementById('selectedModel3');
+    modelButton3.innerHTML = list_models[2];
+    listenSelectedModel(3);
+    var modelButton4 = document.getElementById('selectedModel4');
+    modelButton4.innerHTML = list_models[3];
+    listenSelectedModel(4);
+    var modelButton5 = document.getElementById('selectedModel5');
+    modelButton5.innerHTML = list_models[4];
+    listenSelectedModel(5);
+
+    var modelNameLabel = document.getElementById('modelName');
+    modelNameLabel.innerHTML = sel_model;
+
+    var modelLabel = document.getElementById('modelHeading');
+    modelLabel.innerHTML = sel_model;
+
+    var scoreLabel = document.getElementById('modelAccuracy');
+    scoreLabel.innerHTML = response[0];
+
+    document.getElementById('plot1').src = '../output/plot1.jpg';
+    document.getElementById('plot2').src = '../output/plot2.jpg';
+
+    document.getElementById('codeSnippet').value = response[1];
+
+    clearTimeout(model_status);
+    //train_time = 0.0;
     $('body').addClass('loaded');
-    if (model_type == 'Regression'){
-      document.getElementById('PageR').style = 'display:block';
-    }
-    if (model_type == 'Classification'){
-      document.getElementById('PageC').style = 'display:block';
-    }
-    console.log(score)
+    document.getElementById('PageR').style = 'display:block';
   }
 
   // for generating interface after selecting dataset
@@ -294,6 +333,7 @@ $(document).ready(function() {
   }
 
   function processModelList(response) {
+    list_models = response;
     // create model choices
     for (var m = 0; m < response.length; m++) {
       var button = document.createElement("button");

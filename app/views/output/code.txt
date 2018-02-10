@@ -1,6 +1,0 @@
-import pandas as pd
-
-dataframe = pd.read_csv('housing.csv')
-
-x = dataframe[['TOWN', 'MEDV', 'CRIM', 'ZN', 'INDUS']]
-y = dataframe['TAX']
