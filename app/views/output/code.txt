@@ -1,12 +1,7 @@
 import pandas as pd
 
-dataframe = pd.read_csv('housing.csv')
-
-x = dataframe[['CRIM', 'ZN', 'INDUS']]
-y = dataframe['PTRATIO']
-
-from sklearn.neural_network import MLPClassifier
-
-model = MLPClassifer(solver='lbfgs', random_state=0)
-model.fit(x, y) # your x and y data here
-r_2_score = model.score(x, y) # r^2 score of the trained model
+    dataframe = pd.read_csv('bitcoin_data.csv')
+    
+    x = dataframe[['x']]
+    y = dataframe['y']
+    
