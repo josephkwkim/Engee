@@ -10,6 +10,7 @@ $(document).ready(function() {
   var selected_target;
   var sel_model = []; // only one item
   var model_status;
+  var model_type;
 
   function init() {
     setupListeners();
@@ -283,7 +284,7 @@ $(document).ready(function() {
       var button = document.createElement("button");
       button.id = "model" + m;
       button.innerHTML = response[m];
-      button.className = 'btn btn-primary text-uppercase';
+      button.className = 'btn btn-primary text-uppercase btn-circle';
 
       button.style.height = '180px';
       button.style.width = '180px';
@@ -304,8 +305,109 @@ $(document).ready(function() {
     $('html, body').animate({
       scrollTop: $('#ModelSelection').offset().top
     }, 'slow');
-
   }
+
+  $(document).on("mouseenter", ".btn-circle", function() {
+    $("#Gradient").css("display", "none");
+    $("#Lasso").css("display", "none");
+    $("#Linear").css("display", "none");
+    $("#Neural1").css("display", "none");
+    $("#Support1").css("display", "none");
+    $("#KNearest").css("display", "none");
+    $("#Logistic").css("display", "none");
+    $("#Neural2").css("display", "none");
+    $("#RandomForest").css("display", "none");
+    $("#Support2").css("display", "none");
+
+    $("#ModelDescription").css("display", "block");
+    if (model_type == 'Regression') {
+      $("#RegressionDescription").css("display", "block");
+    }
+    if (model_type == 'Classification') {
+      $("#ClassificationDescription").css("display", "block");
+    }
+  });
+
+  $(document).on("mouseenter", "#model0", function() {
+    if (model_type == 'Regression') {
+      $("#Gradient").css("display", "block");
+    }
+    if (model_type == 'Classification') {
+      $("#KNearest").css("display", "block");
+    }
+  });
+
+  $(document).on("mouseenter", "#model1", function() {
+    if (model_type == 'Regression') {
+      $("#Lasso").css("display", "block");
+    }
+    if (model_type == 'Classification') {
+      $("#Logistic").css("display", "block");
+    }
+  });
+
+  $(document).on("mouseenter", "#model2", function() {
+    if (model_type == 'Regression') {
+      $("#Linear").css("display", "block");
+    }
+    if (model_type == 'Classification') {
+      $("#Neural2").css("display", "block");
+    }
+  });
+
+  $(document).on("mouseenter", "#model3", function() {
+    if (model_type == 'Regression') {
+      $("#Neural1").css("display", "block");
+    }
+    if (model_type == 'Classification') {
+      $("#RandomForest").css("display", "block");
+    }
+  });
+
+  $(document).on("mouseenter", "#model4", function() {
+    if (model_type == 'Regression') {
+      $("#Support1").css("display", "block");
+    }
+    if (model_type == 'Classification') {
+      $("#Support2").css("display", "block");
+    }
+  });
+
+
+  $(document).on("mouseleave", "#ModelSelectRow", function() {
+
+    $("#Gradient").fadeOut(500);
+    $("#Lasso").fadeOut(500);
+    $("#Linear").fadeOut(500);
+    $("#Neural1").fadeOut(500);
+    $("#Support1").fadeOut(500);
+    $("#KNearest").fadeOut(500);
+    $("#Logistic").fadeOut(500);
+    $("#Neural2").fadeOut(500);
+    $("#RandomForest").fadeOut(500);
+    $("#Support2").fadeOut(500);
+
+    setTimeout(function() {
+      $("#ModelDescription").css("display", "none");
+      $("#RegressionDescription").css("display", "none");
+      $("#ClassificationDescription").css("display", "none");
+    }, 500);
+
+    /*
+    $("#Gradient").css("display", "none");
+    $("#Lasso").css("display", "none");
+    $("#Linear").css("display", "none");
+    $("#Neural1").css("display", "none");
+    $("#Support1").css("display", "none");
+    $("#KNearest").css("display", "none");
+    $("#Logistic").css("display", "none");
+    $("#Neural2").css("display", "none");
+    $("#RandomForest").css("display", "none");
+    $("#Support2").css("display", "none");
+    */
+
+  });
+
 
   // wrapper for model selection setupListeners
   function listenModel(id) {
@@ -412,6 +514,7 @@ $(document).ready(function() {
     if (listener == "regressButton") {
       $("#regressButton").click(function(event) {
         console.log("Chose Regression Models!");
+        model_type = 'Regression';
         $.ajax({
           url: 'http://' + host + ':5000/',
           type: 'POST',
@@ -431,6 +534,7 @@ $(document).ready(function() {
     if (listener == "classifyButton") {
       $("#classifyButton").click(function(event) {
         console.log("Chose CLassification Models!");
+        model_type = 'Classification';
         $.ajax({
           url: 'http://' + host + ':5000/',
           type: 'POST',

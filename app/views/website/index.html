@@ -179,7 +179,7 @@
         <div class="container">
           <h2 class="text-center text-uppercase text-white">Feature Selection</h2>
           <center>
-            <div id="FeatureInfo" class="info-div">
+            <div class="info-div">
               <hr style='visibility:hidden'>
               <hr class="info-light mb-5">
               <span class="info-text">
@@ -195,7 +195,7 @@
 
             <div class="text-center mt-4 col-lg-2">
             </div>
-            
+
             <div id="FeaturesDiv" class="text-center mt-4 col-lg-8">
             </div>
 
@@ -210,9 +210,15 @@
         <div class="container">
           <h2 class="text-center text-uppercase text-secondary mb-0"> Target Selection</h2>
           <center>
-            <div id="TargetInfo" style="width:250px; height:80px;">
+            <div class="info-div">
               <hr style='visibility:hidden'>
               <hr class="info-dark mb-5">
+              <span class="info-text">
+                  <div class="info-content">
+                      <h3> Linear Regression </h3>
+                      In statistics, linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X. The case of one explanatory variable is called simple linear regression. For more than one explanatory variable, the process is called multiple linear regression.
+                  </div>
+              </span>
             </div>
           </center>
           <div class="row">
@@ -229,9 +235,15 @@
         <div class="container">
           <h2 class="text-center text-uppercase text-white"> Model Type</h2>
           <center>
-            <div id="ModelTypeInfo" style="width:250px; height:80px;">
+            <div class="info-div">
               <hr style='visibility:hidden'>
               <hr class="info-light mb-5">
+              <span class="info-text">
+                  <div class="info-content">
+                      <h3> Linear Regression </h3>
+                      In statistics, linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X. The case of one explanatory variable is called simple linear regression. For more than one explanatory variable, the process is called multiple linear regression.
+                  </div>
+              </span>
             </div>
           </center>
           <div class="row">
@@ -247,16 +259,79 @@
 
           <h2 class="text-center text-uppercase text-secondary mb-0"> Model Selection</h2>
           <center>
-            <div id="ModelSelectionInfo" style="width:250px; height:80px;">
+            <div class="info-div">
               <hr style='visibility:hidden'>
               <hr class="info-dark mb-5">
+              <span class="info-text">
+                  <div class="info-content">
+                      <h3> Linear Regression </h3>
+                      In statistics, linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X. The case of one explanatory variable is called simple linear regression. For more than one explanatory variable, the process is called multiple linear regression.
+                  </div>
+              </span>
             </div>
           </center>
-          <div class="row">
+          <div id="ModelSelectRow" class="row">
 
             <div id="ModelSelectDiv" class="text-center mt-4 col-lg-12"> </div>
 
+            <div id="ModelDescription" class="text-center mt-4 col-lg-12" style="display:none; height:200px">
+
+              <div id="RegressionDescription" style='display:none;'>
+
+                <div id="Gradient" class="model-description" style='display:none;'>
+                  <h3> Gradient Boosting Regression </h3> Gradient boosting is a machine learning technique for regression problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees.
+                </div>
+
+                <div id="Lasso" class="model-description" style='display:none;'>
+                  <h3> Lasso Regression </h3> In statistics and machine learning, lasso (least absolute shrinkage and selection operator) is a regression analysis method that performs both variable selection and regularization in order to enhance the prediction accuracy and interpretability
+                  of the statistical model it produces.
+                </div>
+
+                <div id="Linear" class="model-description" style='display:none;'>
+                  <h3> Linear Regression </h3> In statistics, linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X. The case of one explanatory variable is called simple linear
+                  regression. For more than one explanatory variable, the process is called multiple linear regression.
+                </div>
+
+                <div id="Neural1" class="model-description" style='display:none;'>
+                  <h3> Neural Network Regressor </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
+                </div>
+
+                <div id="Support1" class="model-description" style='display:none;'>
+                  <h3> Support Vector Machine </h3> In machine learning, support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis.
+                </div>
+
+              </div>
+
+              <div id="ClassificationDescription" style='display:none'>
+
+                  <div id="KNearest" class="model-description" style='display:none;'>
+                    <h3> K-Nearest Neighbors </h3> In pattern recognition, the k-nearest neighbors algorithm is a non-parametric method used for classification. In both cases, the input consists of the k closest training examples in the feature space. In k-NN classification, the output
+                    is a class membership. An object is classified by a majority vote of its neighbors.
+                  </div>
+
+                  <div id="Logistic" class="model-description" style='display:none;'>
+                    <h3> Logistic Regression </h3> In statistics, logistic regression, or logit model, is a regression model where the dependent variable is categorical. In binary logistic regression, output can take only two values, "0" and "1". Cases where the dependent variable
+                    has more than two outcome categories may be analysed in multinomial logistic regression.
+                  </div>
+
+                  <div id="Neural2" class="model-description" style='display:none;'>
+                    <h3> Neural Network Regressor </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
+                  </div>
+
+                  <div id="RandomForest" class="model-description" style='display:none;'>
+                    <h3> Random Forests </h3> Random forests are an ensemble learning method for classification, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes.
+                  </div>
+
+                  <div id="Support2" class="model-description" style='display:none;'>
+                    <h3> Support Vector Machine </h3> In machine learning, support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis.
+                  </div>
+
+              </div>
+
+            </div>
+
           </div>
+
         </div>
       </section>
 

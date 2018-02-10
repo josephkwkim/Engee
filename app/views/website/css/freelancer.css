@@ -336,19 +336,7 @@ a:focus, a:hover, a:active {
 }
 
 .btn-circle {
-  height: 180px;
-  width: 180px;
-  border-radius: 50%;
-  background-color: #6798D3;
-  border-color: white;
-  border: 3px;
-  color: white;
-  font-size: 1.5em;
-}
-
-.btn-circle:hover, .btn-circle:focus, .btn-circle:active {
-  background-color: #503A60;
-  border-color: black;
+  visibility: visible;
 }
 
 /* HR STAR */
@@ -448,7 +436,7 @@ hr.info-light:hover, hr.info-light:active, hr.info-dark:hover, hr.info-dark:hove
   position: relative;
   z-index: 900;
   top: -100px;
-  left: 550px;
+  left: 180px;
 }
 
 .info-div .info-text .info-content {
@@ -468,11 +456,21 @@ hr.info-light:hover, hr.info-light:active, hr.info-dark:hover, hr.info-dark:hove
   content: " ";
   position: absolute;
   position: absolute;
-  top: 20%;
+  top: 19%;
   right: 100%;
-
   margin-top: -15px;
   border-width: 15px;
   border-style: solid;
-  border-color: transparent black transparent transparent;
+  border-color: transparent #503A60 transparent transparent;
+}
+
+.model-description {
+  width: 50%;
+  background-color: #503A60;
+  border-radius: 2px;
+  padding: 20px;
+  color: white;
+  position: relative;
+  left: 25%;
+  text-align: left;
 }
