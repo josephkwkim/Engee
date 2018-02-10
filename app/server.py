@@ -16,7 +16,7 @@ CORS(app)
 glob_df = None
 glob_X = None
 glob_y = None
-glob_type = None
+glob_models = None
 glob_model = None
 
 @app.route("/", methods=['POST'])
@@ -24,7 +24,7 @@ def process_page():
     global glob_df
     global glob_X
     global glob_y
-    global glob_type
+    global glob_models
     global glob_model
 
     rdata = request.get_json()
@@ -64,10 +64,10 @@ def process_page():
     ### Selecting Prediction Type ###
     elif rdata['phase'] == 3:
         if rdata['name'] == "Chose Regress":  # -> Regression Prediction
-            resp, glob_type = get_models(glob_X, glob_y, glob_df, regression=True)
+            resp, glob_models = get_models(glob_X, glob_y, glob_df, regression=True)
         elif rdata['name'] == "Chose Classify":  # -> Classification Prediction
             type = "classification"
-            resp, glob_type = get_models(glob_X, glob_y, glob_df, regression=False)
+            resp, glob_models = get_models(glob_X, glob_y, glob_df, regression=False)
         else:
             resp = "Phase 3 Huh? What is this?"
 
