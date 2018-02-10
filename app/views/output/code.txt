@@ -1,12 +1,12 @@
 import pandas as pd
 
-dataframe = pd.read_csv('iris.csv')
+dataframe = pd.read_csv('housing.csv')
 
-x = dataframe[['SepalLengthCm']]
-y = dataframe['Species']
+x = dataframe[['CRIM', 'TOWN']]
+y = dataframe['PTRATIO']
 
-from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import GradientBoostingRegressor
 
-model = MLPClassifer(solver='lbfgs', random_state=0)
+model = GradientBoostingRegressor()
 model.fit(x, y) # your x and y data here
 r_2_score = model.score(x, y) # r^2 score of the trained model

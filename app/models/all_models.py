@@ -151,6 +151,7 @@ def get_relevant_dataset(x, y, dataset):
     assert(isinstance(y, str))
     df_x = dataset[x]
     df_y = dataset[y]
+    df_x = df_x._get_numeric_data()
     return df_x.values, df_y.values
 
 def get_models(x_, y_, dataset, test_split=test_split, regression = True):
