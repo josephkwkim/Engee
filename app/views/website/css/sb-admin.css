@@ -226,11 +226,11 @@ body.fixed-nav {
 }
 
 #modelNav.fixed-top.navbar-dark .sidenav-toggler {
-  background-color: #212529;
+  background-color: #222222;
 }
 
 #modelNav.fixed-top.navbar-dark .sidenav-toggler a i {
-  color: #adb5bd;
+  color: white;
 }
 
 #modelNav.fixed-top.navbar-light .sidenav-toggler {
@@ -359,7 +359,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 @media (min-width: 992px) {
   #modelNav.navbar-dark .navbar-collapse .navbar-sidenav {
-    background: #343a40;
+    background: #353942;
   }
   #modelNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
     color: white !important;
@@ -479,7 +479,7 @@ footer.sticky-footer {
 
 div.border1 {
     position: absolute;
-    top: 100px;
+    top: 20px;
     left: 270px;
     width: 500px;
     height: 130px;
@@ -487,7 +487,7 @@ div.border1 {
 
 div.border2 {
     position: absolute;
-    top: 190px;
+    top: 100px;
     left: 270px;
     width: 350px;
     height: 130px;
@@ -495,7 +495,7 @@ div.border2 {
 
 div.border3 {
     position: absolute;
-    top: 270px;
+    top: 190px;
     left: 270px;
     width: 400px;
     height: 130px;
@@ -504,7 +504,7 @@ div.border3 {
 
 div.border4 {
     position: absolute;
-    top: 330px;
+    top: 230px;
     left: 270px;
     width: 400px;
     height: 100px;
@@ -514,7 +514,7 @@ div.border4 {
 
 div.border5 {
     position: absolute;
-    top: 390px;
+    top: 300px;
     left: 270px;
     width: 350px;
     height: 100px;
@@ -590,7 +590,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 180px;
+  top: 20 px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
@@ -601,7 +601,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 250px;
+  top: 145px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
@@ -612,7 +612,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 315px;
+  top: 210px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
@@ -623,7 +623,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 370px;
+  top: 265px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
@@ -634,7 +634,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 430px;
+  top: 325px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
@@ -645,7 +645,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 240px;
+  top: 145px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
@@ -656,7 +656,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 300px;
+  top: 205px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
@@ -667,7 +667,7 @@ div.border8 {
   position:absolute;
   width: 270;
   height: 270;
-  top: 350px;
+  top: 255px;
   left: 255px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
