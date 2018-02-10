@@ -38,7 +38,7 @@ class Regressors(object):
             export_code('linreg')
             return [linreg, linreg.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def Lasso_Regression(self):
         lasso = Lasso()
@@ -47,7 +47,7 @@ class Regressors(object):
             export_code('lassoreg')
             return [lasso, lasso.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def Gradient_Boosting_Regressor(self):
         gbr = GradientBoostingRegressor()
@@ -56,7 +56,7 @@ class Regressors(object):
             export_code('gbr')
             return [gbr, gbr.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def Support_Vector_Machine(self):
         svr = SVR()
@@ -65,7 +65,7 @@ class Regressors(object):
             export_code('svr')
             return [svr, svr.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def Neural_Network(self):
         nn = MLPRegressor(solver='lbfgs', random_state=0)
@@ -74,7 +74,7 @@ class Regressors(object):
             export_code('nnr')
             return [nn, nn.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
 class Classifiers(object):
     def __init__(self, x, y, test_split):
@@ -95,7 +95,7 @@ class Classifiers(object):
             export_code('logit')
             return [lr, lr.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def Support_Vector_Machine(self):
         svc = SVC()
@@ -104,7 +104,7 @@ class Classifiers(object):
             export_code('svc')
             return [svc, svc.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def K_Nearest_Neighbors(self):
         knn = KNeighborsClassifier()
@@ -113,7 +113,7 @@ class Classifiers(object):
             export_code('knn')
             return [knn, knn.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def Random_Forests(self):
         rfc = RandomForestClassifier()
@@ -122,7 +122,7 @@ class Classifiers(object):
             export_code('rf')
             return [rfc, rfc.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
     def Neural_Network(self):
         nn = MLPClassifier(solver='lbfgs', random_state=0)
@@ -131,7 +131,7 @@ class Classifiers(object):
             export_code('nnc')
             return [nn, nn.score(self.x_test, self.y_test)]
         except:
-            raise Exception("Data is invalid for selected model!")
+            return False
 
 def get_relevant_dataset(x, y, dataset):
     '''
@@ -172,6 +172,8 @@ def run_model(model_name, base_class):
     method_name = model_name.replace(" ","_").strip() #change back to method name
     actual_method = getattr(base_class, method_name)
     results = actual_method()
+    if not isinstance(results, list):
+        return "ERROR"
     clean_txt('views/output/code.txt')
     model_class = results[0]
     score = results[1]
@@ -201,7 +203,7 @@ def run_model(model_name, base_class):
         plt.savefig('views/output/plot2.jpg', dpi=500)
         plt.close('all')
         percent = round(score, 2) * 100
-        return "{}%".format(percent), code
+        return "R-Squared Score = {}%".format(percent), code
 
     else:
         preds = model_class.predict(x_test)
@@ -223,7 +225,7 @@ def run_model(model_name, base_class):
         plt.savefig("views/output/plot2.jpg", dpi=500)
         plt.close('all')
         percent = round(score, 2) * 100
-        return "{}%".format(percent), code
+        return "Accuracy = {}%".format(percent), code
 
 def predict(x, model_name, base_class):
     method_name = model_name.replace(" ",
@@ -248,8 +250,25 @@ def clean_txt(fpath):
         file.close()
     return
 
+def clean_old_code(filename):
+    # Get rid of old shit before putting new code in
+    with open(filename) as file:
+        text = file.read()
+        file.close()
+    index = text.find('from sklearn')
+    if index == -1: # no old code
+        pass
+    else:
+        text = text[:index]
+        with open(filename, 'w') as file:
+            file.write(text)
+            file.close()
+    return
+
 def export_code(model):
     filename = 'views/output/code.txt'
+    #Get rid of old shit before putting new code in
+    clean_old_code(filename)
     if model == 'linreg':
         code = '''from sklearn.linear_model import LinearRegression
         model = LinearRegression()
