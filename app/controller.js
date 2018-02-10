@@ -104,7 +104,20 @@ $(document).ready(function() {
 
   // for when the model has finished training
   function displayMetrics(response) {
-    var score = response;
+    var modelNameLabel = document.getElementById('modelName');
+    modelNameLabel.innerHTML = sel_model;
+
+    var modelLabel = document.getElementById('modelHeading');
+    modelLabel.innerHTML = sel_model;
+
+    var scoreLabel = document.getElementById('modelAccuracy');
+    scoreLabel.innerHTML = response[0];
+
+    document.getElementById('plot1').src = '../output/plot1.jpg';
+    document.getElementById('plot2').src = '../output/plot2.jpg';
+
+    document.getElementById('codeSnip').textarea = response[1];
+
     clearInterval(model_status);
     $('body').addClass('loaded');
     if (model_type == 'Regression'){
@@ -113,7 +126,6 @@ $(document).ready(function() {
     if (model_type == 'Classification'){
       document.getElementById('PageC').style = 'display:block';
     }
-    console.log(score)
   }
 
   // for generating interface after selecting dataset

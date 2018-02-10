@@ -178,6 +178,7 @@ def run_model(model_name, base_class):
     x_train, x_test, y_train, y_test = (base_class.x_train, base_class.x_test,
                                         base_class.y_train, base_class.y_test)
 
+    code = open('views/output/code.txt').read()
     # Saves two plots and returns the score
     if is_regression:
         reduced_x = PCA(n_components=1).fit_transform(x_test)
@@ -199,7 +200,8 @@ def run_model(model_name, base_class):
         plt.legend(['Actual', 'Predicted'])
         plt.savefig('views/output/plot2.jpg', dpi=500)
         plt.close('all')
-        return score
+        percent = round(score, 2) * 100
+        return "{}%".format(percent), code
 
     else:
         preds = model_class.predict(x_test)
@@ -220,7 +222,8 @@ def run_model(model_name, base_class):
         plt.title("Confusion Heatmap")
         plt.savefig("views/output/plot2.jpg", dpi=500)
         plt.close('all')
-        return score
+        percent = round(score, 2) * 100
+        return "{}%".format(percent), code
 
 def predict(x, model_name, base_class):
     method_name = model_name.replace(" ",
