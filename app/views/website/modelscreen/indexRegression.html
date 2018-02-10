@@ -20,7 +20,7 @@
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <nav class="navbar navbar-dark bg-dark fixed-top" id="modelNav">
 		<a class="navbar-brand" href="../index.html">Home</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
@@ -66,19 +66,19 @@
 						<div class="border4" id="regressionDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
 							Linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more
 							explanatory variables denoted X. Simple and quick model; usually a good baseline.
-						
+
 						</div>
 						<div class="arrow-left4" id="regressionTriangle" style="display:none;"></div>
 						<div class="border5" id="vectorDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
 							Support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification
 							and regression analysis.
-						
+
 						</div>
 						<div class="arrow-left5" id="vectorTriangle" style="display:none;"></div>
 
 						<li>
 							<!-- should link to loading-->
-							<a href="#" id = "selectedNeuralNetwork" onmouseover="popupAppear(neuralDisplay,neuralTriangle);increaseHue(this)"; onmouseout="originalHue(this);popupDisappear(neuralDisplay,neuralTriangle)";>Neural Network</a>	  
+							<a href="#" id = "selectedNeuralNetwork" onmouseover="popupAppear(neuralDisplay,neuralTriangle);increaseHue(this)"; onmouseout="originalHue(this);popupDisappear(neuralDisplay,neuralTriangle)";>Neural Network</a>
 
 						</li>
 						<li>
@@ -103,7 +103,7 @@
 				  </a>
 				</li>
 		  </ul>
-		  
+
   </nav>
   <div class="content-wrapper">
 		<div class="container-fluid">
@@ -116,18 +116,11 @@
 		  </ol>
 		<div class="row">
 			<!-- PRINTING THE TOP HEADERSSSS BOYYYY -->
-			<div style = "color: #353942; text-align: center;">
-				<font size="+20">
-					<b>Model:</b> 
-				</font>
-			</div>
-			<div class id="printModelName" style="color:#353942;">
-				
-			</div>
+			<div class id="printModelName" style="color:#353942; text-align:right;"></div>
 			<div class id="printAccuracy"></div>
+			<img class="img-fluid d-block mx-auto" src="graphs/lasso.png" alt="">
 
 
-			<img class="img-fluid  d-block mx-auto" src="graphs/lasso.png" alt="">
 			<div class="col-lg-12">
 				<!-- Example DataTables Card-->
 				<div class="card mb-3">

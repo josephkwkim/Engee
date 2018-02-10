@@ -1,7 +1,0 @@
-import pandas as pd
-
-    dataframe = pd.read_csv('bitcoin_data.csv')
-    
-    x = dataframe[['x']]
-    y = dataframe['y']
-    

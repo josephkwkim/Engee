@@ -107,6 +107,12 @@ $(document).ready(function() {
     var score = response;
     clearInterval(model_status);
     $('body').addClass('loaded');
+    if (model_type == 'Regression'){
+      document.getElementById('PageR').style = 'display:block';
+    }
+    if (model_type == 'Classification'){
+      document.getElementById('PageC').style = 'display:block';
+    }
     console.log(score)
   }
 
