@@ -17,9 +17,6 @@ import warnings
 warnings.filterwarnings("ignore")
 plt.ioff()
 
-
-
-
 #default test split
 test_split = 0.2
 random_state = 69 #keep results the same
@@ -67,7 +64,7 @@ class Regressors(object):
             raise Exception("Data is invalid for selected model!")
 
     def Neural_Network(self):
-        nn = MLPRegressor()
+        nn = MLPRegressor(solver='lbfgs', random_state=0)
         try:
             nn.fit(self.x_train, self.y_train)
             return [nn, nn.score(self.x_test, self.y_test)]
@@ -119,8 +116,7 @@ class Classifiers(object):
             raise Exception("Data is invalid for selected model!")
 
     def Neural_Network(self):
-        nn = MLPClassifier(hidden_layer_sizes=(50, 50), learning_rate_init=0.01, batch_size='auto',
-                           nesterovs_momentum=False)
+        nn = MLPClassifier(solver='lbfgs', random_state=0)
         try:
             nn.fit(self.x_train, self.y_train)
             return [nn, nn.score(self.x_test, self.y_test)]
@@ -140,7 +136,7 @@ def get_relevant_dataset(x, y, dataset):
     df_y = dataset[y]
     return df_x.values, df_y.values
 
-def get_models(x_, y_, dataset, regression = True):
+def get_models(x_, y_, dataset, test_split=test_split, regression = True):
     (x,y) = get_relevant_dataset(x_, y_, dataset)
     if regression:
         base = Regressors(x, y, test_split)
@@ -163,6 +159,7 @@ def run_model(model_name, base_class):
     x_train, x_test, y_train, y_test = (base_class.x_train, base_class.x_test,
                                         base_class.y_train, base_class.y_test)
 
+    # Saves two plots and returns the score
     if is_regression:
         reduced_x = PCA(n_components=1).fit_transform(x_test)
         preds = model_class.predict(x_test)
@@ -171,7 +168,7 @@ def run_model(model_name, base_class):
         # Plot Sklearn Learning Curve
         plt.figure()
         plot_learning_curve(model_class, "Learning Curve", x_train, y_train)
-        plt.savefig("..//views//images//plot1.jpg", dpi=500)
+        plt.savefig("views/images/plot1.jpg", dpi=500)
         plt.close('all')
 
         # Plot Preds v. Actual
@@ -181,7 +178,7 @@ def run_model(model_name, base_class):
         plt.ylabel("Target")
         plt.xlabel("Principal Component Analysis of Inputs")
         plt.legend(['Actual', 'Predicted'])
-        plt.savefig('..//views//images//plot2.jpg', dpi=500)
+        plt.savefig('views/images/plot2.jpg', dpi=500)
         plt.close('all')
         return score
 
@@ -192,7 +189,7 @@ def run_model(model_name, base_class):
         # Plot Sklearn Learning Curve
         plt.figure()
         plot_learning_curve(model_class, "Learning Curve", x_train, y_train)
-        plt.savefig("..//views//images//plot1.jpg", dpi=500)
+        plt.savefig("views/images/plot1.jpg", dpi=500)
         plt.close('all')
 
         # Plot Confusion Matrix
@@ -202,12 +199,12 @@ def run_model(model_name, base_class):
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title("Confusion Heatmap")
-        plt.savefig("..//views//images//plot2.jpg", dpi=500)
+        plt.savefig("views/images/plot2.jpg", dpi=500)
         plt.close('all')
         return score
 
 
-# From sklearn
+# ---- From SciKit-Learn ---- #
 def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
                         n_jobs=1, train_sizes=np.linspace(.1, 1.0, 5)):
     plt.title(title)

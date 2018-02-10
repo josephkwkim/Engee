@@ -18,6 +18,7 @@ glob_X = None
 glob_y = None
 glob_models = None
 glob_model = None
+glob_score = None
 
 @app.route("/", methods=['POST'])
 def process_page():
@@ -26,6 +27,7 @@ def process_page():
     global glob_y
     global glob_models
     global glob_model
+    global glob_score
 
     rdata = request.get_json()
     print('\n', 'Flask Received:', rdata, '\n')
@@ -79,15 +81,20 @@ def process_page():
         else:
             resp = "Phase 4 Huh? What is this?"
 
+        glob_score = run_model(glob_model, glob_models)
+
+    ### Training Prediction Model ###
+    elif rdata['phase'] == 5:
+        if rdata['name'] == "Model Status":  # -> Checking if Model is Trained
+            resp = glob_score
+        else:
+            resp = "Phase 5 Huh? What is this?"
+
+
     print('Sent to JavaScript:', resp, jsonify(resp), '\n')
     return jsonify(resp)
 
-"""
-@app.errorhandler(404)
-def not_found(error):
-    print("LOL, you have been shutdown.")
-    # return a view template here
-"""
+#############################
 
 if __name__ == '__main__':
     app.run(host='localhost')

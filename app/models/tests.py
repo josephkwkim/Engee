@@ -9,21 +9,22 @@ def test_classifiers():
 
     data = load_dataset(dataset)
 
-    cols, model = get_models(list(data.columns[:-1]), str(data.columns[-1]), data, regression = False)
+    cols, model = get_models(list(data.columns[:-1]), str(data.columns[-1]), data, test_split, regression = False)
 
-    test_model = cols[0]
+    test_model = 'Neural Network'
 
-    run_model(test_model, model)
+    return run_model(test_model, model)
 
 def test_regressors():
     dataset = "../../data/housing.csv"
 
     data = load_dataset(dataset)
 
-    cols, model = get_models(list(data.columns[1:-1]), str(data.columns[-1]), data, regression = True)
+    cols, model = get_models(list(data.columns[1:-1]), str(data.columns[-1]), data, test_split, regression = True)
 
-    test_model = "Linear Regression"
+    test_model = "Neural Network"
 
-    run_model(test_model, model)
+    return run_model(test_model, model)
 
-test_regressors()
+print(test_classifiers())
+print(test_regressors())
