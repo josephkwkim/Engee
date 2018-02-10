@@ -85,28 +85,34 @@ function originalHue(x){
 	x.style.backgroundColor = "#353942";
 }
 
-function popupAppear(element) {
+function popupAppear(element,element2) {
 	var op = 0.1;  // initial opacity
 	element.style.display = 'block';
+	element2.style.display = 'block';
 	var timer = setInterval(function () {
 		if (op >= 1) {
 			clearInterval(timer);
 		}
 		element.style.opacity = op;
+		element2.style.opacity = op;
 		element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+		element2.style.filter = 'alpha(opacity=' + op * 100 + ")";
 		op += op * 0.2;
 	}, 10);
 }
 
-function popupDisappear(element){
+function popupDisappear(element,element2){
 	var op = 1;  // initial opacity
 	var timer = setInterval(function () {
 		if (op <= 0.1) {
 			clearInterval(timer);
 			element.style.display = 'none';
+			element2.style.display = 'none';
 		}
 		element.style.opacity = op;
+		element2.style.opacity = op;
 		element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+		element2.style.filter = 'alpha(opacity=' + op * 100 + ")";
 		op -= op * 0.5;
 	}, 50);
 }

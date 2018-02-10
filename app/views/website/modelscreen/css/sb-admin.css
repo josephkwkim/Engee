@@ -481,9 +481,8 @@ div.border1 {
     position: absolute;
     top: 100px;
     left: 270px;
-    width: 350px;
+    width: 500px;
     height: 130px;
-    border: 3px solid #73AD21;
 } 
 
 div.border2 {
@@ -492,7 +491,6 @@ div.border2 {
     left: 270px;
     width: 350px;
     height: 130px;
-    border: 3px solid #73AD21;
 } 
 
 div.border3 {
@@ -508,7 +506,7 @@ div.border4 {
     position: absolute;
     top: 330px;
     left: 270px;
-    width: 350px;
+    width: 400px;
     height: 100px;
     border: 3px solid #73AD21;
 } 
@@ -527,7 +525,7 @@ div.border6 {
     position: absolute;
     top: 190px;
     left: 270px;
-    width: 350px;
+    width: 500px;
     height: 110px;
     border: 3px solid #73AD21;
 } 
@@ -545,8 +543,133 @@ div.border8 {
     position: absolute;
     top: 330px;
     left: 270px;
-    width: 350px;
-    height: 120px;
+    width: 400px;
+    height: 125px;
     border: 3px solid #73AD21;
 } 
+.tooltip {
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
 
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 110%;
+    
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.arrow-left1 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 180px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid #353942; 
+}
+
+.arrow-left2 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 250px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid#353942; 
+}
+
+.arrow-left3 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 315px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid#353942; 
+}
+
+.arrow-left4 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 370px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid#353942; 
+}
+
+.arrow-left5 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 430px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid#353942; 
+}
+
+.arrow-left6 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 240px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid#353942; 
+}
+
+.arrow-left7 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 300px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid#353942; 
+}
+
+.arrow-left8 {
+  position:absolute;
+  width: 270; 
+  height: 270; 
+  top: 350px;
+  left: 255px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; 
+  border-right:15px solid#353942; 
+}
