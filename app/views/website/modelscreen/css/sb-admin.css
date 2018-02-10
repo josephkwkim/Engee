@@ -673,3 +673,9 @@ div.border8 {
   border-bottom: 15px solid transparent; 
   border-right:15px solid#353942; 
 }
+
+
+img.center {
+    display: block;
+    margin: 0 auto;
+}

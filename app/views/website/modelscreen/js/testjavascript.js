@@ -11,6 +11,7 @@ document.getElementById("selectedGradient").onclick = function () { selectModel(
 document.getElementById("selectedSupportVector").onclick = function () { selectModel() }
 
 
+
 // for generating interface after selecting dataset
 function displayData(response) {
 	column_names = response.column_names;
@@ -99,6 +100,8 @@ function popupAppear(element,element2) {
 		element2.style.filter = 'alpha(opacity=' + op * 100 + ")";
 		op += op * 0.2;
 	}, 10);
+	document.getElementById("printModelName").innerHTML = "<h1 style='#353942; text-align: center;'> Model: Linear Regression</h1>";
+
 }
 
 function popupDisappear(element,element2){
@@ -115,4 +118,5 @@ function popupDisappear(element,element2){
 		element2.style.filter = 'alpha(opacity=' + op * 100 + ")";
 		op -= op * 0.5;
 	}, 50);
+
 }
