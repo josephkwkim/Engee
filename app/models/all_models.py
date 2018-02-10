@@ -121,10 +121,10 @@ def get_models(x_, y_, dataset, regression = True):
     if regression:
         base = Regressors(x, y)
         attrs = [method_name for method_name in dir(base) if callable(getattr(base, method_name))][:5] #from stackoverflow
-        formatted = [i.replace("_", " ") for i in attrs]
-        return formatted, base
+        model_names = [i.replace("_", " ") for i in attrs]
+        return model_names, "Regress"
     else:
         base = Classifiers(x, y)
         attrs = [method_name for method_name in dir(base) if callable(getattr(base, method_name))][:5]  # from stackoverflow
-        formatted = [i.replace("_", " ") for i in attrs]
-        return formatted, base
+        model_names = [i.replace("_", " ") for i in attrs]
+        return model_names, "Classify"
