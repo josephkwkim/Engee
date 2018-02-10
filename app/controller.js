@@ -19,12 +19,6 @@ $(document).ready(function() {
     console.log(response);
   }
 
-  $("#FeatureInfo").hover(function(){
-      $(this).css("background-color", "yellow");
-      }, function(){
-      $(this).css("background-color", "pink");
-  });
-
   // add response to sel_features
   function selectFeature(response) {
     sel_features.push(response);
