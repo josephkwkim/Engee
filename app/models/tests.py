@@ -1,18 +1,29 @@
 from process_data import *
 from all_models import *
 
+test_split = 0.2
+random_state = 69
+
 def test_classifiers():
     dataset = "../../data/iris.csv"
 
     data = load_dataset(dataset)
 
-    (x,y) = get_relevant_dataset(list(data.columns[:-1]), str(data.columns[-1]), data)
+    cols, model = get_models(list(data.columns[:-1]), str(data.columns[-1]), data, regression = False)
 
-    cols, model = get_models(x, y, regression = False)
+    test_model = cols[0]
 
-    print(cols)
-    return model
+    run_model(test_model, model)
 
+def test_regressors():
+    dataset = "../../data/housing.csv"
 
+    data = load_dataset(dataset)
 
+    cols, model = get_models(list(data.columns[1:-1]), str(data.columns[-1]), data, regression = True)
 
+    test_model = "Linear Regression"
+
+    run_model(test_model, model)
+
+test_regressors()
