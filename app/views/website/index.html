@@ -33,6 +33,10 @@
   <link rel="stylesheet" href="css/main.css">
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
+  <!-- Model Page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="css/sb-admin.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -304,27 +308,27 @@
 
               <div id="ClassificationDescription" style='display:none'>
 
-                  <div id="KNearest" class="model-description" style='display:none;'>
-                    <h3> K-Nearest Neighbors </h3> In pattern recognition, the k-nearest neighbors algorithm is a non-parametric method used for classification. In both cases, the input consists of the k closest training examples in the feature space. In k-NN classification, the output
-                    is a class membership. An object is classified by a majority vote of its neighbors.
-                  </div>
+                <div id="KNearest" class="model-description" style='display:none;'>
+                  <h3> K-Nearest Neighbors </h3> In pattern recognition, the k-nearest neighbors algorithm is a non-parametric method used for classification. In both cases, the input consists of the k closest training examples in the feature space. In k-NN classification, the output
+                  is a class membership. An object is classified by a majority vote of its neighbors.
+                </div>
 
-                  <div id="Logistic" class="model-description" style='display:none;'>
-                    <h3> Logistic Regression </h3> In statistics, logistic regression, or logit model, is a regression model where the dependent variable is categorical. In binary logistic regression, output can take only two values, "0" and "1". Cases where the dependent variable
-                    has more than two outcome categories may be analysed in multinomial logistic regression.
-                  </div>
+                <div id="Logistic" class="model-description" style='display:none;'>
+                  <h3> Logistic Regression </h3> In statistics, logistic regression, or logit model, is a regression model where the dependent variable is categorical. In binary logistic regression, output can take only two values, "0" and "1". Cases where the dependent variable has
+                  more than two outcome categories may be analysed in multinomial logistic regression.
+                </div>
 
-                  <div id="Neural2" class="model-description" style='display:none;'>
-                    <h3> Neural Network Regressor </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
-                  </div>
+                <div id="Neural2" class="model-description" style='display:none;'>
+                  <h3> Neural Network Regressor </h3> Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming.
+                </div>
 
-                  <div id="RandomForest" class="model-description" style='display:none;'>
-                    <h3> Random Forests </h3> Random forests are an ensemble learning method for classification, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes.
-                  </div>
+                <div id="RandomForest" class="model-description" style='display:none;'>
+                  <h3> Random Forests </h3> Random forests are an ensemble learning method for classification, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes.
+                </div>
 
-                  <div id="Support2" class="model-description" style='display:none;'>
-                    <h3> Support Vector Machine </h3> In machine learning, support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis.
-                  </div>
+                <div id="Support2" class="model-description" style='display:none;'>
+                  <h3> Support Vector Machine </h3> In machine learning, support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis.
+                </div>
 
               </div>
 
@@ -456,8 +460,122 @@
     </div>
     <!-- Page1 Div -->
 
-    <div id="Page2" style="display:none">
+    <div id="PageR" style="display:none">
 
+      <!-- Navigation-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="modelNav">
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    		  <span class="navbar-toggler-icon"></span>
+    		</button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Data Sets">
+              <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+    						<i class="fa fa-fw fa-wrench"></i>
+    						<span class="nav-link-text">Change Model</span>
+    				  </a>
+              <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+                <div class="border1" id="neuralDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
+                  Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems learn tasks by considering examples, generally without task-specific programming. Trades speed for accuracy. Typically better
+                  for classification, but can be good for regression too.</span>
+                </div>
+                <div class="arrow-left1" id="neuralTriangle" style="display:none;"></div>
+
+                <div class="border2" id="gradientDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
+                  Gradient boosting is a machine learning technique for regression problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. Trades speed for accuracy
+                </div>
+                <div class="arrow-left2" id="gradientTriangle" style="display:none;"></div>
+
+                <div class="border3" id="lassoDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
+                  LASSO (least absolute shrinkage and selection operator) is a regression analysis method that performs both variable selection and regularization in order to enhance the prediction accuracy and interpretability of the statistical model it produces.
+                </div>
+                <div class="arrow-left3" id="lassoTriangle" style="display:none;"></div>
+
+                <div class="border4" id="regressionDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
+                  Linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X. Simple and quick model; usually a good baseline.
+
+                </div>
+                <div class="arrow-left4" id="regressionTriangle" style="display:none;"></div>
+                <div class="border5" id="vectorDisplay" style="border: 5px solid #353942; display:none; color:rgb(173,177,186); background:#353942;">
+                  Support vector machines are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis.
+
+                </div>
+                <div class="arrow-left5" id="vectorTriangle" style="display:none;"></div>
+
+                <li>
+                  <!-- should link to loading-->
+                  <a href="#" id="selectedNeuralNetwork" onmouseover="popupAppear(neuralDisplay,neuralTriangle);increaseHue(this)" ; onmouseout="originalHue(this);popupDisappear(neuralDisplay,neuralTriangle)" ;>Neural Network</a>
+
+                </li>
+                <li>
+                  <a href="#" id="selectedGradient" onmouseover="increaseHue(this);popupAppear(gradientDisplay,gradientTriangle)" ; onmouseout="originalHue(this);popupDisappear(gradientDisplay,gradientTriangle)" ;>Gradient Boosting Regression</a>
+                </li>
+                <li>
+                  <a href="#" id="selectedLasso" onmouseover="increaseHue(this);popupAppear(lassoDisplay,lassoTriangle)" ; onmouseout="originalHue(this);popupDisappear(lassoDisplay,lassoTriangle)" ;>LASSO Regression</a>
+                </li>
+                <li>
+                  <a href="#" id="selectedLinearRegression" onmouseover="increaseHue(this);popupAppear(regressionDisplay,regressionTriangle)" onmouseout="originalHue(this);popupDisappear(regressionDisplay,regressionTriangle)">Linear Regression</a>
+                </li>
+                <li>
+                  <a href="#" id="selectedSupportVector" onmouseover="increaseHue(this);popupAppear(vectorDisplay,vectorTriangle)" onmouseout="originalHue(this);popupDisappear(vectorDisplay,vectorTriangle)">Support Vector Machine</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+              <a class="nav-link text-center" id="sidenavToggler">
+    						<i class="fa fa-fw fa-angle-left"></i>
+    				  </a>
+            </li>
+          </ul>
+      </nav>
+
+      <div class="content-wrapper" style="padding:0px">
+        <div class="container-fluid" style="padding:0px">
+
+          <header class="masthead bg-primary text-white text-center">
+            <div class="container">
+              <h1 class="mb-0"> Linear Regression </h1>
+              <hr class="star-light">
+            </div>
+          </header>
+
+
+          <section class="portfolio">
+            <div class="container">
+              <h3 class="text-center text-uppercase text-secondary mb-0"> Accuracy: 87 </h3>
+              <hr class="star-dark mb-5">
+
+              <div class="row col-lg-12">
+                <!-- PRINTING THE TOP HEADERSSSS BOYYYY -->
+
+                <div class id="printModelName" style="color:#353942; text-align:right;"></div>
+                <div class id="printAccuracy"></div>
+                <img class="img-fluid d-block mx-auto" src="graphs/lasso.png" alt="">
+              </div>
+
+            </div>
+          </section>
+
+
+        </div>
+      </div>
+      <!-- /.container-fluid-->
+      <!-- /.content-wrapper-->
+      <div class="copyright py-4 text-center text-white">
+        <div class="container">
+          <small>Copyright &copy; engee 2018</small>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+    <div id="PageC" style="display:none">
+
+      <h1> Classification </h1>
       <div id="Score"></div>
       <div id="Plot1"></div>
       <div id="Plot2"></div>
@@ -483,6 +601,21 @@
       window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
     </script>
     <script src="js/main.js"></script>
+
+    <!-- Model Page -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/testjavascript.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="js/sb-admin-datatables.min.js"></script>
 
 </body>
 

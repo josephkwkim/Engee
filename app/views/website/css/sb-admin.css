@@ -226,11 +226,11 @@ body.fixed-nav {
 }
 
 #modelNav.fixed-top.navbar-dark .sidenav-toggler {
-  background-color: #212529;
+  background-color: #222222;
 }
 
 #modelNav.fixed-top.navbar-dark .sidenav-toggler a i {
-  color: #adb5bd;
+  color: white;
 }
 
 #modelNav.fixed-top.navbar-light .sidenav-toggler {
@@ -359,7 +359,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 @media (min-width: 992px) {
   #modelNav.navbar-dark .navbar-collapse .navbar-sidenav {
-    background: #343a40;
+    background: #503A60;
   }
   #modelNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
     color: white !important;
