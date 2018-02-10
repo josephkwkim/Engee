@@ -532,32 +532,104 @@
           </ul>
       </nav>
 
-      <div class="content-wrapper" style="padding:0px">
-        <div class="container-fluid" style="padding:0px">
-
-          <header class="masthead bg-primary text-white text-center">
-            <div class="container">
-              <h1 class="mb-0"> Linear Regression </h1>
-              <hr class="star-light">
-            </div>
-          </header>
-
-
-          <section class="portfolio">
-            <div class="container">
-              <h3 class="text-center text-uppercase text-secondary mb-0"> Accuracy: 87 </h3>
-              <hr class="star-dark mb-5">
-
-              <div class="row col-lg-12">
-                <!-- PRINTING THE TOP HEADERSSSS BOYYYY -->
-
-                <div class id="printModelName" style="color:#353942; text-align:right;"></div>
-                <div class id="printAccuracy"></div>
-                <img class="img-fluid d-block mx-auto" src="graphs/lasso.png" alt="">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <!-- Breadcrumbs-->
+          <br>
+          <hr style="height:1px; visibility:hidden;" />
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <!-- <div id="modelName"></div> -->
+              Linear Regression
+            </li>
+            <li class="breadcrumb-item active">Results</li>
+          </ol>
+          
+          <div>
+            <h1 style="border: 5px solid 	#E7ECF0; background: 	#E7ECF0; border-radius: 25px;">
+              <p style="text-align: center; font-size:150%; color:#B1B7B7">
+                <b>Model:</b> Model in here
+                <!-- <div id= "modelHeading"></div> -->
+              </p>
+              <p style="text-align:center; font-size:90%; color:#B1B7B7">
+                Accuracy: 69%
+                <!-- <div id= "modelAccuracy"></div> -->
+              </p>
+            </h1>
+          </div>
+          <div>
+            <img class="img-fluid  d-block mx-auto" align="left" width="605" src="graphs/lasso.png" alt="">
+            <img class="img-fluid  d-block mx-auto" align="right" width="605" src="graphs/lasso.png" alt="">
+          </div>
+          <div>
+            <p style="font-size:150%; ">
+              Hello my niggers, we can observe from here that linear regression is ___ accurate. This is the same as ____ R^2. more shit
+              about linear regression maybe? idk some shit
+              <br>
+              <div style="text-align:center; font-size:150%" ;>
+                <b>Below is the code for your model selected.</b>
               </div>
-
+              <!-- <div id= "modelAccuracy"></div> insert in the blanks-->
+            </p>
+          </div>
+          
+          <div style="text-align:center" ;>
+            <textarea id="codeSnippet" name="codeSnippet" rows="15" cols="110" readonly>
+          def longestCommonSubstring(s1,s2):
+              substring = ""
+              match = ""
+              len1 = len(s1)
+              len2 = len(s2)
+              counter = 0
+              prevLongest = 0
+              
+              for i in range(len1): 
+                  for k in range (len1,0,-1):
+                      if s1[i:k] in s2: #retrieves every possible substring
+                          match = s1[i:k] 
+                          if len(match) > len(substring): 
+                              substring = match
+                          elif len(match) == len(substring):
+                              substring = min(match,substring)
+              return substring				
+          			</textarea>
+          </div>
+          
+          <br>
+          <br>
+          <div>
+            <div style="text-align:center; font-size:110%" ;>
+              <b>Using the input boxes below, you can put in custom parameters and see what your model predicts from your data set.</b>
             </div>
-          </section>
+            <br>
+            <form style="margin-left:calc(50% - 350px); float:left; display:inline-block;" onsubmit="return predictFunction(); ">
+              Input 1:
+              <br>
+              <input type="text" name="firstpredictor">
+              <br> Input 2:
+              <br>
+              <input type="text" name="secondpredictor">
+              <br> Input 3:
+              <br>
+              <input type="text" name="thirdpredictor">
+              <br>
+              <br>
+              <input type="submit" value="Predict" onclick="">
+            </form>
+            <textarea style=" margin-left:calc(50% - 550px); display:inline-block; margin-bottom:75px;" rows="7" cols="50" ; readonly>
+          			</textarea>
+          </div>
+
+
+
+
+
+
+
+
+
+
+          
 
 
         </div>
