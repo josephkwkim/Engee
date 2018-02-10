@@ -35,6 +35,7 @@ class Regressors(object):
         linreg = LinearRegression()
         try:
             linreg.fit(self.x_train, self.y_train)
+            export_code('linreg')
             return [linreg, linreg.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -43,6 +44,7 @@ class Regressors(object):
         lasso = Lasso()
         try:
             lasso.fit(self.x_train, self.y_train)
+            export_code('lassoreg')
             return [lasso, lasso.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -51,6 +53,7 @@ class Regressors(object):
         gbr = GradientBoostingRegressor()
         try:
             gbr.fit(self.x_train, self.y_train)
+            export_code('gbr')
             return [gbr, gbr.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -59,6 +62,7 @@ class Regressors(object):
         svr = SVR()
         try:
             svr.fit(self.x_train, self.y_train)
+            export_code('svr')
             return [svr, svr.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -67,17 +71,18 @@ class Regressors(object):
         nn = MLPRegressor(solver='lbfgs', random_state=0)
         try:
             nn.fit(self.x_train, self.y_train)
+            export_code('nnr')
             return [nn, nn.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
 
 class Classifiers(object):
     def __init__(self, x, y, test_split):
-        le = LabelEncoder()
+        self.le = LabelEncoder()
         self.x = x
         self.y = y
         self.x_train, self.x_test, self.y_train, self.y_test = \
-            train_test_split(x, le.fit_transform(y), test_size=test_split,
+            train_test_split(x, self.le.fit_transform(y), test_size=test_split,
                              random_state=random_state)
         self.regression = False
     def __str__(self):
@@ -87,6 +92,7 @@ class Classifiers(object):
         lr = LogisticRegression()
         try:
             lr.fit(self.x_train, self.y_train)
+            export_code('logit')
             return [lr, lr.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -95,6 +101,7 @@ class Classifiers(object):
         svc = SVC()
         try:
             svc.fit(self.x_train, self.y_train)
+            export_code('svc')
             return [svc, svc.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -103,6 +110,7 @@ class Classifiers(object):
         knn = KNeighborsClassifier()
         try:
             knn.fit(self.x_train, self.y_train)
+            export_code('knn')
             return [knn, knn.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -111,6 +119,7 @@ class Classifiers(object):
         rfc = RandomForestClassifier()
         try:
             rfc.fit(self.x_train, self.y_train)
+            export_code('rf')
             return [rfc, rfc.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -119,6 +128,7 @@ class Classifiers(object):
         nn = MLPClassifier(solver='lbfgs', random_state=0)
         try:
             nn.fit(self.x_train, self.y_train)
+            export_code('nnc')
             return [nn, nn.score(self.x_test, self.y_test)]
         except:
             raise Exception("Data is invalid for selected model!")
@@ -130,10 +140,18 @@ def get_relevant_dataset(x, y, dataset):
     :param dataset: pandas dataframe
     :return: x ndarray and y ndarray
     '''
+    code = '''
+    x = dataframe[{}]
+    y = dataframe['{}']
+    '''.format(x,y)
+    with open('views/output/code.txt', 'a+') as file:
+        file.write(code)
+        file.close()
     assert(isinstance(x, (list,np.ndarray,np.array)))
     assert(isinstance(y, str))
     df_x = dataset[x]
     df_y = dataset[y]
+    df_x = df_x._get_numeric_data()
     return df_x.values, df_y.values
 
 def get_models(x_, y_, dataset, test_split=test_split, regression = True):
@@ -154,6 +172,7 @@ def run_model(model_name, base_class):
     method_name = model_name.replace(" ","_").strip() #change back to method name
     actual_method = getattr(base_class, method_name)
     results = actual_method()
+    clean_txt('views/output/code.txt')
     model_class = results[0]
     score = results[1]
     x_train, x_test, y_train, y_test = (base_class.x_train, base_class.x_test,
@@ -168,7 +187,7 @@ def run_model(model_name, base_class):
         # Plot Sklearn Learning Curve
         plt.figure()
         plot_learning_curve(model_class, "Learning Curve", x_train, y_train)
-        plt.savefig("views/images/plot1.jpg", dpi=500)
+        plt.savefig("views/output/plot1.jpg", dpi=500)
         plt.close('all')
 
         # Plot Preds v. Actual
@@ -178,7 +197,7 @@ def run_model(model_name, base_class):
         plt.ylabel("Target")
         plt.xlabel("Principal Component Analysis of Inputs")
         plt.legend(['Actual', 'Predicted'])
-        plt.savefig('views/images/plot2.jpg', dpi=500)
+        plt.savefig('views/output/plot2.jpg', dpi=500)
         plt.close('all')
         return score
 
@@ -189,7 +208,7 @@ def run_model(model_name, base_class):
         # Plot Sklearn Learning Curve
         plt.figure()
         plot_learning_curve(model_class, "Learning Curve", x_train, y_train)
-        plt.savefig("views/images/plot1.jpg", dpi=500)
+        plt.savefig("views/output/plot1.jpg", dpi=500)
         plt.close('all')
 
         # Plot Confusion Matrix
@@ -199,10 +218,136 @@ def run_model(model_name, base_class):
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title("Confusion Heatmap")
-        plt.savefig("views/images/plot2.jpg", dpi=500)
+        plt.savefig("views/output/plot2.jpg", dpi=500)
         plt.close('all')
         return score
 
+def predict(x, model_name, base_class):
+    method_name = model_name.replace(" ",
+                                     "_").strip()  # change back to method name
+    actual_method = getattr(base_class, method_name)
+    results = actual_method()
+    model_class = results[0]
+    initial_pred = model_class.predict(x)
+    if not base_class.regression:
+        return base_class.le.inverse_transform(initial_pred)
+    else:
+        return initial_pred
+
+def clean_txt(fpath):
+    with open(fpath) as file:
+        txt = file.read()
+    lines = txt.splitlines()
+    cleaned = [i.strip() for i in lines]
+    new = '\n'.join(cleaned)
+    with open(fpath, 'w') as file:
+        file.write(new)
+        file.close()
+    return
+
+def export_code(model):
+    filename = 'views/output/code.txt'
+    if model == 'linreg':
+        code = '''from sklearn.linear_model import LinearRegression
+        model = LinearRegression()
+        model.fit(x, y) # your x and y data here
+        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+
+    elif model == 'lassoreg':
+        code = '''
+        from sklearn.linear_model import Lasso
+
+        model = Lasso()
+        model.fit(x, y) # your x and y data here
+        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'gbr':
+        code = '''
+                from sklearn.ensemble import GradientBoostingRegressor
+
+                model = GradientBoostingRegressor()
+                model.fit(x, y) # your x and y data here
+                r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'svm':
+        code = '''
+                        from sklearn.svm import SVR
+
+                        model = SVR()
+                        model.fit(x, y) # your x and y data here
+                        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'nnr':
+        code = '''
+                        from sklearn.neural_network import MLPRegressor
+
+                        model = MLPRegressor(solver='lbfgs', random_state=0)
+                        model.fit(x, y) # your x and y data here
+                        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'logit':
+        code = '''
+                        from sklearn.linear_model import LogisticRegression
+
+                        model = LogisticRegression()
+                        model.fit(x, y) # your x and y data here
+                        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'svc':
+        code = '''
+                        from sklearn.svm import SVC
+
+                        model = SVC()
+                        model.fit(x, y) # your x and y data here
+                        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'knn':
+        code = '''
+                        from sklearn.neighbors import KNeighborsClassifier
+
+                        model = KNeighborsClassifier()
+                        model.fit(x, y) # your x and y data here
+                        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'rf':
+        code = '''
+            from sklearn.ensemble import RandomForestClassifier
+
+            model = RandomForestClassifier()
+            model.fit(x, y) # your x and y data here
+            r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    elif model == 'nnc':
+        code = '''
+                        from sklearn.neural_network import MLPClassifier
+
+                        model = MLPClassifer(solver='lbfgs', random_state=0)
+                        model.fit(x, y) # your x and y data here
+                        r_2_score = model.score(x, y) # r^2 score of the trained model'''
+        with open(filename, 'a+') as file:
+            file.write(code)
+            file.close()
+    else:
+        print('you fucked up')
 
 # ---- From SciKit-Learn ---- #
 def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,

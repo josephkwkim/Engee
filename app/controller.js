@@ -10,6 +10,7 @@ $(document).ready(function() {
   var selected_target;
   var sel_model = []; // only one item
   var model_status;
+  var train_time = 0.0;
 
   function init() {
     setupListeners();
@@ -18,12 +19,6 @@ $(document).ready(function() {
   function process(response) {
     console.log(response);
   }
-
-  $("#FeatureInfo").hover(function(){
-      $(this).css("background-color", "yellow");
-      }, function(){
-      $(this).css("background-color", "pink");
-  });
 
   // add response to sel_features
   function selectFeature(response) {
@@ -82,6 +77,14 @@ $(document).ready(function() {
 
     model_status = setInterval(function() {
       console.log("Checking for Model Status...");
+
+      train_time = train_time + 0.5;
+      if (train_time > 30) {
+        clearInterval(model_status);
+        $('body').addClass('loaded');
+        console.log("Model Timed Out! Did you commit a MISTAKE?");
+      }
+
       $.ajax({
         url: 'http://' + host + ':5000/',
         type: 'POST',
