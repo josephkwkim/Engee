@@ -46,25 +46,26 @@
 				  </a>
 				  <ul class="sidenav-second-level collapse" id="collapseExamplePages">
 						<div class="border1" id="neuralDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
-							 Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems
+							Neural networks are computing systems inspired by the biological neural networks that constitute animal brains. Such systems
 							learn tasks by considering examples, generally without task-specific programming.
 						</div>
 
-						<div class="border2" id="gradientDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
-							Gradient boosting is a machine learning technique for regression problems, which produces a prediction model in the form
-							of an ensemble of weak prediction models, typically decision trees.
+						<div class="border6" id="logisticDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+                            Logistic regression, or logit model, is a regression model where the dependent variable is categorical. In binary logistic
+                            regression, output can take only two values, "0" and "1".
 						
 						</div>
 
-						<div class="border3" id="lassoDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
-							LASSO (least absolute shrinkage and selection operator) is a regression analysis method that performs both variable selection
-							and regularization in order to enhance the prediction accuracy and interpretability of the statistical model it produces.
+						<div class="border7" id="kNearestDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+                            In pattern recognition, the k-nearest neighbors algorithm is a non-parametric method used for classification. In both cases,
+                            the input consists of the k closest training examples in the feature space. In k-NN classification, the output is a class
+                            membership. An object is classified by a majority vote of its neighbors.
 						
 						</div>
 						
-						<div class="border4" id="regressionDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
-							Linear regression is a linear approach for modelling the relationship between a scalar dependent variable y and one or more
-							explanatory variables denoted X.
+						<div class="border8" id="forestDisplay" style="border: 1px solid rgb(33,37,46); display:none; color:rgb(173,177,186); background:#353942;">
+                            Random forests are an ensemble learning method for classification, that operate by constructing a multitude of decision
+                            trees at training time and outputting the class that is the mode of the classes.
 						
 						</div>
 
@@ -79,13 +80,13 @@
 
 						</li>
 						<li>
-						 	 <a href="#" id = "selectedGradient" onmouseover="increaseHue(this);popupAppear(gradientDisplay)"; onmouseout="originalHue(this);popupDisappear(gradientDisplay)";>Gradient Boosting Regression</a>
+						 	 <a href="#" id = "selectedLogistic" onmouseover="increaseHue(this);popupAppear(logisticDisplay)"; onmouseout="originalHue(this);popupDisappear(logisticDisplay)";>Logistic Regression</a>
 						</li>
 						<li>
-						  	<a href="#" id = "selectedLasso" onmouseover="increaseHue(this);popupAppear(lassoDisplay)"; onmouseout="originalHue(this);popupDisappear(lassoDisplay)";>LASSO Regression</a>
+						  	<a href="#" id = "selectedKNearest" onmouseover="increaseHue(this);popupAppear(kNearestDisplay)"; onmouseout="originalHue(this);popupDisappear(kNearestDisplay)";>k-Nearest Neighbors</a>
 						</li>
 						<li>
-						  <a href="#" id= "selectedLinearRegression" onmouseover="increaseHue(this);popupAppear(regressionDisplay)" onmouseout="originalHue(this);popupDisappear(regressionDisplay)">Linear Regression</a>
+						  <a href="#" id= "selectedLinearRegression" onmouseover="increaseHue(this);popupAppear(forestDisplay)" onmouseout="originalHue(this);popupDisappear(forestDisplay)">Random Forests</a>
 						</li>
 						<li>
 							<a href="#" id = "selectedSupportVector" onmouseover="increaseHue(this);popupAppear(vectorDisplay)" onmouseout="originalHue(this);popupDisappear(vectorDisplay)">Support Vector Machine</a>
