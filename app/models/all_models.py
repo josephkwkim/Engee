@@ -136,7 +136,7 @@ def get_relevant_dataset(x, y, dataset):
     df_y = dataset[y]
     return df_x.values, df_y.values
 
-def get_models(x_, y_, dataset, test_split, regression = True):
+def get_models(x_, y_, dataset, test_split=test_split, regression = True):
     (x,y) = get_relevant_dataset(x_, y_, dataset)
     if regression:
         base = Regressors(x, y, test_split)
@@ -168,7 +168,7 @@ def run_model(model_name, base_class):
         # Plot Sklearn Learning Curve
         plt.figure()
         plot_learning_curve(model_class, "Learning Curve", x_train, y_train)
-        plt.savefig("..//views//images//plot1.jpg", dpi=500)
+        plt.savefig("views/images/plot1.jpg", dpi=500)
         plt.close('all')
 
         # Plot Preds v. Actual
@@ -178,7 +178,7 @@ def run_model(model_name, base_class):
         plt.ylabel("Target")
         plt.xlabel("Principal Component Analysis of Inputs")
         plt.legend(['Actual', 'Predicted'])
-        plt.savefig('..//views//images//plot2.jpg', dpi=500)
+        plt.savefig('views/images/plot2.jpg', dpi=500)
         plt.close('all')
         return score
 
@@ -189,7 +189,7 @@ def run_model(model_name, base_class):
         # Plot Sklearn Learning Curve
         plt.figure()
         plot_learning_curve(model_class, "Learning Curve", x_train, y_train)
-        plt.savefig("..//views//images//plot1.jpg", dpi=500)
+        plt.savefig("views/images/plot1.jpg", dpi=500)
         plt.close('all')
 
         # Plot Confusion Matrix
@@ -199,7 +199,7 @@ def run_model(model_name, base_class):
         plt.xlabel('Predicted')
         plt.ylabel('Actual')
         plt.title("Confusion Heatmap")
-        plt.savefig("..//views//images//plot2.jpg", dpi=500)
+        plt.savefig("views/images/plot2.jpg", dpi=500)
         plt.close('all')
         return score
 

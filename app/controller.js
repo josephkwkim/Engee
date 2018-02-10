@@ -1,16 +1,16 @@
 // makes sure application isn't broken
 $(document).ready(function() {
 
-  $('body').addClass('loaded');
-
   // global variables
   var host = 'localhost';
   var sel_features = [];
   var sel_target = []; // only one item
   var selected_target;
   var sel_model = []; // only one item
+  var model_status;
 
   function init() {
+    $('body').addClass('loaded');
     setupListeners();
   }
 
@@ -58,10 +58,10 @@ $(document).ready(function() {
     document.getElementById('Page1').style = 'display:none';
     $('body').removeClass('loaded');
 
-    setTimeout(function() {
+    /*setTimeout(function() {
       document.getElementById('Page1').style = 'display:block';
       $('body').addClass('loaded');
-    }, 3000);
+    }, 3000);*/
 
     console.log("Selected " + response + " as Model!");
     $.ajax({
@@ -77,6 +77,31 @@ $(document).ready(function() {
     }).done((response) => {
       displayLoading(response)
     });
+
+    model_status = setInterval(function() {
+      console.log("Checking for Model Status...");
+      $.ajax({
+        url: 'http://' + host + ':5000/',
+        type: 'POST',
+        data: JSON.stringify({
+          name: "Model Status",
+          phase: 5
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+      }).done((response) => {
+        displayMetrics(response)
+      });
+    }, 500);
+
+  }
+
+  // for when the model has finished training
+  function displayMetrics(response) {
+    var score = response;
+    clearInterval(model_status);
+    $('body').addClass('loaded');
+    console.log(score)
   }
 
   // for generating interface after selecting dataset
