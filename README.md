@@ -9,6 +9,7 @@ engee is designed to educate data enthusiasts and empower non-technical analysts
 * Pandas
 * Sci-Kit Learn
 * Matplotlib
+* Seaborn
 
 # Startup
 1. run start.bat to activate the flask server on localhost:5000
