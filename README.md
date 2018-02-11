@@ -1,10 +1,8 @@
 # engee
-under construction...
 
 ![engee icon](app/views/images/logo_md.png)
 
 # Dependencies
-* Bootstrap
 * Flask
 * Node.js
 * NumPy
