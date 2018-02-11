@@ -1,6 +1,6 @@
 # engee
 
-engee is designed to educate data enthusiasts and empower non-technical analysts. With an easy-to-use interface and guided tooltips, engee makes machine learning a breeze to learn and implement.
+engee is designed to educate data enthusiasts and empower non-technical analysts. With an easy-to-use interface and guided tooltips, engee makes machine learning a breeze to learn and implement. So import your dataset now, and adventure through the machine learning pipeline!
 
 # Dependencies
 * Flask
