@@ -12,7 +12,7 @@ engee is designed to educate data enthusiasts and empower non-technical analysts
 * Seaborn
 
 # Startup
-1. run start.bat to activate the flask server on localhost:5000
+1. run start.bat to activate the flask server on a local host
 2. navigate to views/website/index.html to launch the web application
 
 # Screenshots
