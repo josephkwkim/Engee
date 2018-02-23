@@ -16,5 +16,5 @@ engee is designed to educate data enthusiasts and empower non-technical analysts
 2. navigate to views/website/index.html to launch the web application
 
 # Screenshots
-![Tooltip Screenshot](screenshots/snippet.png)
+![Tooltip Screenshot](screenshots/tooltip.png)
 ![Selection Screenshot](screenshots/selection.png)
