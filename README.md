@@ -1,6 +1,6 @@
 # Engee
 
-Engee is a web application designed to educate data enthusiasts and empower non-technical analysts. With an easy-to-use interface supported by guided tool-tips, Engee makes machine learning a breeze to learn and implement. With just a few clicks, users can go from importing a dataset to analyzing the confusion matrix of their selected model.
+Engee is a web application designed to educate data enthusiasts and empower non-technical analysts. With an easy-to-use interface supported by guided tool-tips, Engee makes machine learning a breeze to learn and implement. In just a few clicks, users can go from importing a dataset to analyzing the confusion matrix of their selected model.
 
 # Dependencies
 * Node.js
