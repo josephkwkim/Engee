@@ -15,9 +15,6 @@ Engee is a web application designed to educate data enthusiasts and empower non-
 1. run start.bat to activate the flask server on a local host
 2. navigate to views/website/index.html to launch the web application
 
-# Screenshots
-Feature Selection Screen
-![Tooltip Screenshot](screenshots/tooltip.png)
-
+# UI Screenshot
 Model Selection Screen
 ![Selection Screenshot](screenshots/selection.png)
