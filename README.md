@@ -20,5 +20,5 @@ Engee is a web application designed to educate data enthusiasts and empower non-
 ![Data Preview Screenshot](screenshots/preview.png)
 ![Feature Selection Screenshot](screenshots/feature.png)
 ![Model Selection Screenshot](screenshots/model.png)
-![Confusion Matrix Screenshot](screenshots/confusion.png)
-![Prediction Options Screenshot](screenshots/prediction.png)
+![Metrics Screenshot](screenshots/metrics.png)
+![Code Output Screenshot](screenshots/output.png)
